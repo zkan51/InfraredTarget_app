@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="@drawable/model_main"
+    >
+    
+    <TextView
+        android:id="@+id/tv_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="123dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/back" />
+
+    <TextView
+        android:id="@+id/tv_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_return"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="90dp"
+        android:text="@string/mode1"
+        android:textColor="#ffffff"
+        android:textSize="50sp" />
+
+    <TextView
+        android:id="@+id/tv_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/model"
+        android:gravity="center"
+        android:text="@string/stop"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:layout_below="@+id/tv_start"
+        android:layout_alignStart="@+id/tv_start" />
+
+    <TextView
+        android:id="@+id/tv_continue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/model"
+        android:gravity="center"
+        android:text="@string/strcontinue"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:layout_below="@+id/tv_stop"
+        android:layout_alignStart="@+id/tv_stop" />
+
+    <TextView
+        android:id="@+id/tv_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="56dp"
+        android:background="@drawable/model"
+        android:gravity="center"
+        android:text="@string/start"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:layout_below="@+id/tv_return"
+        android:layout_alignStart="@+id/tv_return"
+        android:layout_alignParentEnd="true" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/tv_stop"
+        android:layout_alignTop="@+id/tv_start"
+        android:layout_alignBottom="@+id/tv_continue" />
+
+</RelativeLayout>
