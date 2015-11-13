@@ -1,10 +1,16 @@
 package com.uidata;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Message;
 import android.util.Log;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import android.os.Handler;
+
+import com.infraredgun.MyApplication;
 
 
 public class DataProcess {
@@ -12,16 +18,14 @@ public class DataProcess {
     private byte[] sData = new byte[9];
     private	int  start = 0x43;
     private int end = 0x34;
-    public  static int STOPBITS = 1;
-    public  static int DATABITS = 8;
 
     public Socket socket;
-
     private boolean onListening = false;
 
     private Thread receiveThread;
 
-
+    public Handler handler;
+    public BroadcastReceiver broadcastReceiver;
     public DataProcess()
     {
         socket  = new Socket();
@@ -49,7 +53,7 @@ public class DataProcess {
     }
 
 
-    public void startConn(final String  ip, final int port) {
+    public void startConn() {
 
         new Thread(new Runnable()
         {
@@ -66,7 +70,7 @@ public class DataProcess {
                 }
                  try
                  {
-                     socket = new Socket(ip, port);
+                     socket = new Socket(CommonData.IP, CommonData.PORT);
                      Log.e("DataProcess", "socket connected");
                      onListening = true;
                      acceptMsg();
@@ -164,12 +168,13 @@ public class DataProcess {
         {
             Log.e("gun", ""+sData[i]);
         }
-        if(first == 0X43&&last == 0X34&&second == 0X43)
+        if(first == 0X43 && last == 0X34 && second == 0X43)
         {
             if(sData[7]==sData[4]+sData[5]+sData[6])
             {
-
-
+                Intent intent = new Intent("ReceiveData");
+                intent.putExtra("HitNum", sData[2]);
+                MyApplication.getAppContext().sendBroadcast(intent);
             }
         }
     }
