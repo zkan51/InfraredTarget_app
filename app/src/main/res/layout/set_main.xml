@@ -5,7 +5,7 @@
     android:background="@drawable/model_main" >
     
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_setreturn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/tv_setreturn"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="78dp"
         android:background="@drawable/model"
@@ -55,27 +55,27 @@
         android:textSize="30sp" />
 
  <Spinner
-     android:id="@+id/Spinner01"
+     android:id="@+id/sp_mode1"
      android:layout_width="300sp"
      android:layout_height="80sp"
      android:layout_alignTop="@+id/textView1"
      android:layout_marginRight="170dp"
-     android:layout_toLeftOf="@+id/textView2"
+     android:layout_toLeftOf="@+id/tv_setreturn"
      android:background="@drawable/spinner" />
 
  <Spinner
-     android:id="@+id/Spinner02"
+     android:id="@+id/sp_mode2"
      android:layout_width="300sp"
      android:layout_height="80sp"
-     android:layout_alignLeft="@+id/Spinner01"
+     android:layout_alignLeft="@+id/sp_mode1"
      android:layout_alignTop="@+id/TextView01"
      android:background="@drawable/spinner" />
 
  <Spinner
-     android:id="@+id/Spinner03"
+     android:id="@+id/sp_mode3"
      android:layout_width="300sp"
      android:layout_height="80sp"
-     android:layout_alignLeft="@+id/Spinner02"
+     android:layout_alignLeft="@+id/sp_mode2"
      android:layout_alignTop="@+id/TextView02"
      android:background="@drawable/spinner" />
 
@@ -88,5 +88,18 @@
      android:text="设置"
      android:textColor="#ffffff"
      android:textSize="50sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/confirm"
+        android:id="@+id/tv_Confirm"
+        android:layout_alignBottom="@+id/sp_mode2"
+        android:layout_alignTop="@+id/sp_mode2"
+        android:layout_alignStart="@+id/tv_setreturn"
+        android:layout_alignEnd="@+id/tv_setreturn"
+        android:textColor="#ff02010a"
+        android:visibility="visible"
+        android:textSize="@android:dimen/app_icon_size" />
 
 </RelativeLayout>

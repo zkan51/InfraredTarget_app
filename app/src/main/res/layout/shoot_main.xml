@@ -4,26 +4,12 @@
     android:layout_height="match_parent" 
     android:background="@drawable/shoot">
 
-   
 
     <TextView
-        android:id="@+id/TextView02"
+        android:id="@+id/tv_mode1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/TextView01"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="108dp"
-        android:background="@drawable/model"
-        android:gravity="center"
-        android:text="模式3"
-        android:textColor="#000000"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/TextView01"
+        android:layout_above="@+id/tv_mode2"
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="25dp"
         android:layout_marginLeft="194dp"
@@ -34,11 +20,11 @@
         android:textSize="30sp" />
 
     <TextView
-        android:id="@+id/TextView01"
+        android:id="@+id/tv_mode2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/TextView02"
-        android:layout_alignLeft="@+id/textView1"
+        android:layout_above="@+id/tv_mode3"
+        android:layout_alignLeft="@+id/tv_mode1"
         android:layout_marginBottom="42dp"
         android:background="@drawable/model"
         android:gravity="center"
@@ -47,20 +33,20 @@
         android:textSize="30sp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_return"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
         android:layout_marginRight="123dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/back" />
+        android:background="@drawable/back"
+        android:layout_below="@+id/TextView05"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="86dp" />
 
     <TextView
         android:id="@+id/TextView05"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/TextView02"
+        android:layout_alignBottom="@+id/tv_mode3"
         android:layout_alignLeft="@+id/TextView04"
         android:background="@drawable/show" />
 
@@ -68,27 +54,41 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_alignTop="@+id/textView1"
+        android:layout_alignRight="@+id/tv_return"
+        android:layout_alignTop="@+id/tv_mode1"
         android:layout_marginRight="54dp"
-        android:background="@drawable/show" />
+        android:background="@drawable/show"
+        android:text="@string/mode1" />
 
     <TextView
         android:id="@+id/TextView04"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/TextView01"
+        android:layout_alignBottom="@+id/tv_mode2"
         android:layout_alignLeft="@+id/textView3"
-        android:background="@drawable/show" />
+        android:background="@drawable/show"
+        android:text="@string/mode2" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tv_set"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_alignLeft="@+id/textView1"
         android:layout_marginLeft="84dp"
-        android:background="@drawable/set" />
+        android:background="@drawable/set"
+        android:layout_alignBottom="@+id/tv_mode1"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/tv_mode3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_mode2"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="108dp"
+        android:background="@drawable/model"
+        android:gravity="center"
+        android:text="@string/mode3"
+        android:textColor="#000000"
+        android:textSize="30sp" />
 
 </RelativeLayout>
