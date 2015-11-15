@@ -8,12 +8,14 @@
         android:id="@+id/hitnum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextasaView" />
+        android:text="TextasaView"
+        android:textSize="@android:dimen/app_icon_size" />
 
     <TextView
         android:id="@+id/hitscore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textSize="@android:dimen/app_icon_size" />
 
 </LinearLayout>

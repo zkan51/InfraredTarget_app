@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 public class AdapterRecycler  extends  RecyclerView.Adapter<AdapterRecycler.ViewHolder>{
 
-	public int []hitscores;
-    public AdapterRecycler(int []hitscore)
+	public String []hitscores;
+    public AdapterRecycler(String []hitscore)
     {
     	this.hitscores = hitscore;
     }
@@ -22,7 +22,8 @@ public class AdapterRecycler  extends  RecyclerView.Adapter<AdapterRecycler.View
     }
     @Override
     public void onBindViewHolder(AdapterRecycler.ViewHolder viewHolder, int position) {
-        	viewHolder.tv_hitnum.setText(position);
+            int num = position + 1;
+        	viewHolder.tv_hitnum.setText(""+num);
         	viewHolder.tv_hitscore.setText(hitscores[position]);
     }
     public static class ViewHolder extends RecyclerView.ViewHolder{

@@ -2,6 +2,7 @@ package com.infraredgun;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import com.uidata.CommonData;
 import com.uidata.PreferenceConstants;
@@ -16,6 +17,7 @@ public class MyApplication  extends Application {
     public void onCreate()
     {
         super.onCreate();
+        Log.e("MyApplication", "Run");
         CommonData.wifiAdmin = new WifiAdmin(this);
         DetectThread detectThread = new DetectThread();
         detectThread.start();

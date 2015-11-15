@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shoot"
+   >
+
+
+    <TextView
+        android:id="@+id/tv_common"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_progress"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="194dp"
+        android:background="@drawable/model"
+        android:gravity="center"
+        android:text="@string/common_mode"
+        android:textColor="#000000"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/tv_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_challenge"
+        android:layout_alignLeft="@+id/tv_common"
+        android:layout_marginBottom="42dp"
+        android:background="@drawable/model"
+        android:gravity="center"
+        android:text="@string/progress_mode"
+        android:textColor="#000000"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/tv_compete_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="123dp"
+        android:background="@drawable/back"
+        android:layout_marginEnd="75dp"
+        android:layout_alignTop="@+id/tv_common"
+        android:layout_alignParentEnd="true" />
+
+
+
+    <TextView
+        android:id="@+id/tv_challenge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_progress"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="108dp"
+        android:background="@drawable/model"
+        android:gravity="center"
+        android:text="@string/challenge_mode"
+        android:textColor="#000000"
+        android:textSize="30sp" />
+
+</RelativeLayout>
+

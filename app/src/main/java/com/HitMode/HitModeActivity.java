@@ -6,12 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -29,12 +25,16 @@ public class HitModeActivity extends Activity {
     private GridLayoutManager gridLayoutManager;
     private RecyclerView recyclerView;
     public AdapterRecycler adapterRecycler;
-    public int arr_hitscores[] = new int[CommonData.TARGETNUM];
+    public String arrhitscores[] = new String[CommonData.TARGETNUM];
+    public int arrhitscorenum[] = new int[CommonData.TARGETNUM];
     public MyBroadcastReceiver myBroadcastReceiver;
     final int STRAT = 1;
     final int STOP = 2;
     final int CONTINUE = 3;
     final int RETURN = 4;
+    int iTime = 0;
+    boolean bStart = false;
+    boolean bStop = false;
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +44,11 @@ public class HitModeActivity extends Activity {
         initUI();
         Intent intent = getIntent();
         String strModeName = intent.getStringExtra("ModeName");
-        int iTime = intent.getIntExtra("Time", 0);
+        iTime = intent.getIntExtra("Time", 0);
         tv_mode.setText(strModeName);
+
+        CommonData.dataProcess.sendCmd(0x00, CommonData.HITCMD, iTime, 0x00, 0x00);
+
         myBroadcastReceiver = new MyBroadcastReceiver();
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("ReceiveData");
@@ -54,24 +57,24 @@ public class HitModeActivity extends Activity {
 	}
 	private void initUI()
 	{
-		tv_start = (TextView)this.findViewById(R.id.tv_start);
+		tv_start = (TextView)this.findViewById(R.id.tv_compete_start);
         tv_stop = (TextView)this.findViewById(R.id.tv_stop);
-        tv_continue = (TextView)this.findViewById(R.id.tv_continue);
-        tv_return = (TextView)this.findViewById(R.id.tv_return);
-        tv_mode = (TextView)this.findViewById(R.id.tv_mode);
+        tv_continue = (TextView)this.findViewById(R.id.tv_tryagain);
+        tv_return = (TextView)this.findViewById(R.id.tv_compete_return);
+        tv_mode = (TextView)this.findViewById(R.id.tv_competemodename);
         recyclerView =(RecyclerView)this.findViewById(R.id.rv_show);
         gridLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(gridLayoutManager);
-        adapterRecycler = new AdapterRecycler(arr_hitscores);
+        adapterRecycler = new AdapterRecycler(arrhitscores);
         recyclerView.setAdapter(adapterRecycler);
         TouchListener starttouchListener = new TouchListener(STRAT);
         tv_start.setOnTouchListener(starttouchListener);
         TouchListener stoptouchListener = new TouchListener(STOP);
-        tv_start.setOnTouchListener(starttouchListener);
+        tv_stop.setOnTouchListener(stoptouchListener);
         TouchListener continuetouchListener = new TouchListener(CONTINUE);
-        tv_start.setOnTouchListener(continuetouchListener);
+        tv_continue.setOnTouchListener(continuetouchListener);
         TouchListener returnTouchListener = new TouchListener(RETURN);
-        tv_start.setOnTouchListener(returnTouchListener);
+        tv_return.setOnTouchListener(returnTouchListener);
 
 
 	}
@@ -89,12 +92,27 @@ public class HitModeActivity extends Activity {
                 switch (iFunction)
                 {
                     case STRAT:
+                        CommonData.dataProcess.sendCmd(0x00, CommonData.HITCMD, iTime, 0x00, 0x00);
+                        bStart = true;
                         break;
                     case STOP:
+                        if(bStart) {
+                            CommonData.dataProcess.sendCmd(0x00, CommonData.HITCMD, 0x00, 0x01, 0x00);
+                            bStop = true;
+                        }
                         break;
                     case CONTINUE:
+                        if(bStop)
+                        {
+                            CommonData.dataProcess.sendCmd(0x00, CommonData.HITCMD, 0x00, 0x02, 0x00);
+                            bStop = false;
+                        }
                         break;
                     case RETURN:
+                        if(bStart)
+                        {
+                            CommonData.dataProcess.sendCmd(0x00, CommonData.HITCMD, 0x00, 0x00, 0x00);
+                        }
                         Intent intent = new Intent(HitModeActivity.this, Hit_Activity.class);
                         startActivity(intent);
                         HitModeActivity.this.finish();
@@ -114,7 +132,8 @@ public class HitModeActivity extends Activity {
                 int hitNum = intent.getIntExtra("HitNum", 0);
                 if(hitNum != 0)
                 {
-                    arr_hitscores[hitNum - 1]++;
+                    arrhitscorenum[hitNum - 1]++;
+                    arrhitscores[hitNum - 1] = ""+arrhitscorenum[hitNum - 1];
                     adapterRecycler.notifyItemChanged(hitNum - 1);
                 }
             }

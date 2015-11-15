@@ -6,7 +6,7 @@
     >
     
     <TextView
-        android:id="@+id/tv_return"
+        android:id="@+id/tv_compete_return"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -16,10 +16,10 @@
         android:background="@drawable/back" />
 
     <TextView
-        android:id="@+id/tv_mode"
+        android:id="@+id/tv_competemodename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/tv_return"
+        android:layout_alignBottom="@+id/tv_compete_return"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="90dp"
         android:text="@string/mode1"
@@ -35,11 +35,11 @@
         android:text="@string/stop"
         android:textColor="#000000"
         android:textSize="30sp"
-        android:layout_below="@+id/tv_start"
-        android:layout_alignStart="@+id/tv_start" />
+        android:layout_below="@+id/tv_compete_start"
+        android:layout_alignStart="@+id/tv_compete_start" />
 
     <TextView
-        android:id="@+id/tv_continue"
+        android:id="@+id/tv_tryagain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/model"
@@ -51,7 +51,7 @@
         android:layout_alignStart="@+id/tv_stop" />
 
     <TextView
-        android:id="@+id/tv_start"
+        android:id="@+id/tv_compete_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="56dp"
@@ -60,15 +60,15 @@
         android:text="@string/start"
         android:textColor="#000000"
         android:textSize="30sp"
-        android:layout_below="@+id/tv_return"
-        android:layout_alignStart="@+id/tv_return"
+        android:layout_below="@+id/tv_compete_return"
+        android:layout_alignStart="@+id/tv_compete_return"
         android:layout_alignParentEnd="true" />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_show"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toStartOf="@+id/tv_stop"
-        android:layout_alignTop="@+id/tv_start"
-        android:layout_alignBottom="@+id/tv_continue" />
+        android:layout_alignTop="@+id/tv_compete_start"
+        android:layout_alignBottom="@+id/tv_tryagain" />
 
 </RelativeLayout>

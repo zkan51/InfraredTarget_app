@@ -6,68 +6,72 @@
 
 
     <TextView
-        android:id="@+id/tv_mode1"
+        android:id="@+id/tv_common"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/tv_mode2"
+        android:layout_above="@+id/tv_progress"
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="25dp"
         android:layout_marginLeft="194dp"
         android:background="@drawable/model"
         android:gravity="center"
-        android:text="模式1"
+        android:text="@string/mode1"
         android:textColor="#000000"
         android:textSize="30sp" />
 
     <TextView
-        android:id="@+id/tv_mode2"
+        android:id="@+id/tv_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/tv_mode3"
-        android:layout_alignLeft="@+id/tv_mode1"
+        android:layout_above="@+id/tv_challenge"
+        android:layout_alignLeft="@+id/tv_common"
         android:layout_marginBottom="42dp"
         android:background="@drawable/model"
         android:gravity="center"
-        android:text="模式2"
+        android:text="@string/mode2"
         android:textColor="#000000"
         android:textSize="30sp" />
 
     <TextView
-        android:id="@+id/tv_return"
+        android:id="@+id/tv_compete_return"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="123dp"
         android:background="@drawable/back"
-        android:layout_below="@+id/TextView05"
+        android:layout_below="@+id/tvmode3time"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="86dp" />
 
     <TextView
-        android:id="@+id/TextView05"
+        android:id="@+id/tvmode3time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/tv_mode3"
-        android:layout_alignLeft="@+id/TextView04"
-        android:background="@drawable/show" />
+        android:layout_alignBottom="@+id/tv_challenge"
+        android:layout_alignLeft="@+id/tvmode2time"
+        android:background="@drawable/show"
+        android:textSize="@android:dimen/app_icon_size"
+        android:gravity="center_vertical|center_horizontal" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvmode1time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/tv_return"
-        android:layout_alignTop="@+id/tv_mode1"
+        android:layout_alignRight="@+id/tv_compete_return"
+        android:layout_alignTop="@+id/tv_common"
         android:layout_marginRight="54dp"
         android:background="@drawable/show"
-        android:text="@string/mode1" />
+        android:textSize="@android:dimen/app_icon_size"
+        android:gravity="center_vertical|center_horizontal" />
 
     <TextView
-        android:id="@+id/TextView04"
+        android:id="@+id/tvmode2time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/tv_mode2"
-        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignBottom="@+id/tv_progress"
+        android:layout_alignLeft="@+id/tvmode1time"
         android:background="@drawable/show"
-        android:text="@string/mode2" />
+        android:textSize="@android:dimen/app_icon_size"
+        android:gravity="center_vertical|center_horizontal" />
 
     <TextView
         android:id="@+id/tv_set"
@@ -75,14 +79,14 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="84dp"
         android:background="@drawable/set"
-        android:layout_alignBottom="@+id/tv_mode1"
+        android:layout_alignBottom="@+id/tv_common"
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:id="@+id/tv_mode3"
+        android:id="@+id/tv_challenge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tv_mode2"
+        android:layout_alignLeft="@+id/tv_progress"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="108dp"
         android:background="@drawable/model"

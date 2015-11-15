@@ -19,6 +19,7 @@ android {
 }
 
 dependencies {
+    compile 'com.android.support:recyclerview-v7:23.1.0'
     compile 'com.android.support:support-v4:18.0.0'
-    compile files('libs/android-support-v7-recyclerview.jar')
+    compile 'com.android.support:support-annotations:23.1.0'
 }

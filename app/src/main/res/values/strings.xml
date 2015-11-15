@@ -15,9 +15,21 @@
     <string name="mode1">模式1</string>
     <string name="mode2">模式2</string>
     <string name="mode3">模式3</string>
+    <string name="common_mode">一般难度</string>
+    <string name="progress_mode">精英难度</string>
+    <string name="challenge_mode">神人难度</string>
+
+    <stirng name="try_again">再来一次</stirng>
+
+    <string name="cal_time">倒计时</string>
+    <string name="second">秒</string>
+    <string name="hit"> 击中</string>
+    <string name="target">靶</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_hit_">Hit_Activity</string>
     <string name="title_activity_hit_set_">HitSet_Activity</string>
+    <string name="title_activity_compete">ComPete_Activity</string>
+
     <string-array name="ModeTime">
         <item>30s</item>
         <item>60s</item>
@@ -26,5 +38,8 @@
         <item>150s</item>
         <item>180s</item>
     </string-array>
+
+    <string name="title_activity_exercise_">Exercise_Activity</string>
+    <string name="title_activity_compete__mode_">Compete_Mode_Activity</string>
 
 </resources>
