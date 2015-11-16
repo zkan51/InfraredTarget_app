@@ -19,7 +19,7 @@
     <string name="progress_mode">精英难度</string>
     <string name="challenge_mode">神人难度</string>
 
-    <stirng name="try_again">再来一次</stirng>
+    <string name="try_again">请再按一次键退出</string>
 
     <string name="cal_time">倒计时</string>
     <string name="second">秒</string>

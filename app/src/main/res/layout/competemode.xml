@@ -64,10 +64,10 @@
         android:layout_height="wrap_content"
         android:text="@string/second"
         android:id="@+id/tv2"
-        android:layout_alignBottom="@+id/tvmode1time"
-        android:layout_centerHorizontal="true"
-        android:layout_alignTop="@+id/tv1"
-        android:textSize="@android:dimen/app_icon_size" />
+        android:textSize="@android:dimen/app_icon_size"
+        android:layout_marginRight="124dp"
+        android:layout_alignTop="@+id/tv_rest_time"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -89,21 +89,26 @@
         android:layout_alignStart="@+id/tv2" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="12"
+        android:layout_width="120sp"
+        android:layout_height="60sp"
+        android:text="180"
+        android:gravity="center"
+        android:background="@drawable/showtime"
         android:id="@+id/tv_rest_time"
-        android:layout_toEndOf="@+id/tv_competemodename"
-        android:layout_marginStart="62dp"
-        android:layout_alignTop="@+id/tv2"
-        android:layout_alignBottom="@+id/tv2"
         android:textSize="@android:dimen/app_icon_size"
-        android:textColor="#ffcaff2e" />
+        android:textColor="#ffcaff2e"
+        android:layout_alignTop="@+id/tv1"
+        android:layout_toRightOf="@+id/tv_competemodename"
+        android:layout_toEndOf="@+id/tv_competemodename"
+        android:layout_marginLeft="46dp"
+        android:layout_marginStart="46dp" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="12"
+        android:layout_width="120sp"
+        android:layout_height="60sp"
+        android:text="0"
+        android:gravity="center"
+        android:background="@drawable/showtime"
         android:id="@+id/tv_hit_num"
         android:textSize="@android:dimen/app_icon_size"
         android:layout_alignTop="@+id/textView5"

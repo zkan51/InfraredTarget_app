@@ -47,7 +47,7 @@ public class Hit_Activity extends Activity {
                 {
                     Intent intent = new Intent(Hit_Activity.this, MainActivity.class);
                     startActivity(intent);
-                    Hit_Activity.this.finish();;
+                    Hit_Activity.this.finish();
                 }
                 return false;
             }
@@ -81,5 +81,9 @@ public class Hit_Activity extends Activity {
             return false;
         }
     }
-
+    public void onBackPressed() {
+        Intent intent = new Intent(Hit_Activity.this, MainActivity.class);
+        startActivity(intent);
+        Hit_Activity.this.finish();
+    }
 }

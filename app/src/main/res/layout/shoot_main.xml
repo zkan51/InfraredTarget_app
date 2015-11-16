@@ -33,16 +33,6 @@
         android:textSize="30sp" />
 
     <TextView
-        android:id="@+id/tv_compete_return"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="123dp"
-        android:background="@drawable/back"
-        android:layout_below="@+id/tvmode3time"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="86dp" />
-
-    <TextView
         android:id="@+id/tvmode3time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,18 +40,8 @@
         android:layout_alignLeft="@+id/tvmode2time"
         android:background="@drawable/show"
         android:textSize="@android:dimen/app_icon_size"
-        android:gravity="center_vertical|center_horizontal" />
-
-    <TextView
-        android:id="@+id/tvmode1time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/tv_compete_return"
-        android:layout_alignTop="@+id/tv_common"
-        android:layout_marginRight="54dp"
-        android:background="@drawable/show"
-        android:textSize="@android:dimen/app_icon_size"
-        android:gravity="center_vertical|center_horizontal" />
+        android:gravity="center_vertical|center_horizontal"
+        android:textColor="#666666" />
 
     <TextView
         android:id="@+id/tvmode2time"
@@ -71,16 +51,9 @@
         android:layout_alignLeft="@+id/tvmode1time"
         android:background="@drawable/show"
         android:textSize="@android:dimen/app_icon_size"
-        android:gravity="center_vertical|center_horizontal" />
-
-    <TextView
-        android:id="@+id/tv_set"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="84dp"
-        android:background="@drawable/set"
-        android:layout_alignBottom="@+id/tv_common"
-        android:layout_alignParentEnd="true" />
+        android:gravity="center_vertical|center_horizontal"
+        android:textIsSelectable="false"
+        android:textColor="#666666" />
 
     <TextView
         android:id="@+id/tv_challenge"
@@ -94,5 +67,38 @@
         android:text="@string/mode3"
         android:textColor="#000000"
         android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/tv_compete_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="123dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/back" />
+
+    <TextView
+        android:id="@+id/tv_set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_compete_return"
+        android:layout_marginRight="146dp"
+        android:layout_toLeftOf="@+id/tv_compete_return"
+        android:background="@drawable/set" />
+
+    <TextView
+        android:id="@+id/tvmode1time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_common"
+        android:layout_alignRight="@+id/tv_compete_return"
+        android:layout_marginRight="46dp"
+        android:layout_toStartOf="@+id/tv_set"
+        android:background="@drawable/show"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="1"
+        android:textSize="@android:dimen/app_icon_size"
+        android:textColor="#666666" />
 
 </RelativeLayout>

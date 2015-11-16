@@ -100,8 +100,8 @@
         android:layout_alignEnd="@+id/tv_setreturn"
         android:textColor="#ff02010a"
         android:visibility="visible"
-        android:textSize="@android:dimen/app_icon_size"
-        android:background="#ffffd8f0"
+        android:textSize="30sp"
+        android:background="@drawable/model"
         android:gravity="center_vertical|center_horizontal" />
 
 </RelativeLayout>

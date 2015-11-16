@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.CompeteMode.Compete_Activity;
 import com.ExerciseMode.Exercise_Activity;
@@ -57,8 +58,19 @@ public class MainActivity extends Activity {
                 return false;
             }
         });
-
-
    }
+    private long firstTime;
+    public void onBackPressed() {
+        if (System.currentTimeMillis() - firstTime < 3000) {
+            finish();
+            System.exit(0);
 
-}
+        } else {
+            firstTime = System.currentTimeMillis();
+            Toast.makeText(this, R.string.try_again, Toast.LENGTH_SHORT);
+            CommonData.isRunning = false;
+        }
+    }
+ }
+
+

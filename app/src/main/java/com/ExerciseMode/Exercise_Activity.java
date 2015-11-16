@@ -35,4 +35,9 @@ public class Exercise_Activity extends Activity {
             }
         });
     }
+    public void onBackPressed() {
+        CommonData.dataProcess.sendCmd(0x00, CommonData.EXERCISECMD, 0x00, 0x00, 0x00);
+        startActivity(new Intent(Exercise_Activity.this, MainActivity.class));
+        Exercise_Activity.this.finish();
+    }
 }

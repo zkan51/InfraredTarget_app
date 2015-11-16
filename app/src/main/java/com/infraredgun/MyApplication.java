@@ -17,7 +17,6 @@ public class MyApplication  extends Application {
     public void onCreate()
     {
         super.onCreate();
-        Log.e("MyApplication", "Run");
         CommonData.wifiAdmin = new WifiAdmin(this);
         DetectThread detectThread = new DetectThread();
         detectThread.start();

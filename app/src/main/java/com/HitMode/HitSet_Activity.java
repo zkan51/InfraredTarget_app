@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.infraredgun.R;
+import com.uidata.CommonData;
 import com.uidata.PreferenceConstants;
 import com.uidata.PreferenceUtils;
 
@@ -91,5 +92,9 @@ public class HitSet_Activity extends Activity {
         public void onNothingSelected(AdapterView<?> parent) {
             // TODO Auto-generated method stub
         }
+    }
+    public void onBackPressed() {
+        startActivity(new Intent(HitSet_Activity.this, Hit_Activity.class));
+        HitSet_Activity.this.finish();
     }
 }

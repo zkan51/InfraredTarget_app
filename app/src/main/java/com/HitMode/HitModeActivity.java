@@ -139,12 +139,13 @@ public class HitModeActivity extends Activity {
             }
         }
     }
-    private class ModeThread extends Thread
-    {
-        public void run()
+    public void onBackPressed() {
+        if(bStart)
         {
-
+            CommonData.dataProcess.sendCmd(0x00, CommonData.HITCMD, 0x00, 0x00, 0x00);
         }
+        Intent intent = new Intent(HitModeActivity.this, Hit_Activity.class);
+        startActivity(intent);
+        HitModeActivity.this.finish();
     }
-
 }

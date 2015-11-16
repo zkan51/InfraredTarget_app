@@ -25,6 +25,7 @@ public class DetectThread extends Thread {
                 }
                 CommonData.dataProcess.startConn();
             }
+
         }
     }
 }

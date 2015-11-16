@@ -73,9 +73,14 @@ public class Compete_Activity extends Activity {
                 String strModeName = tvView.getText().toString();
                 intent.putExtra("ModeName", strModeName);
                 intent.putExtra("Time", iTime);
+                intent.putExtra("Difficult", iDifficult);
                 startActivity(intent);
             }
             return false;
         }
+    }
+    public void onBackPressed() {
+        startActivity(new Intent(Compete_Activity.this, MainActivity.class));
+        Compete_Activity.this.finish();
     }
 }
