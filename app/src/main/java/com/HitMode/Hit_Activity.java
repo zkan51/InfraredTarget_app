@@ -83,7 +83,7 @@ public class Hit_Activity extends Activity {
         }
     }
     public void onBackPressed() {
-        Log.e("Hit_Activity", "backpress");
+        Log.i("HitActivity", "backpress");
         Intent intent = new Intent(Hit_Activity.this, MainActivity.class);
         startActivity(intent);
         Hit_Activity.this.finish();

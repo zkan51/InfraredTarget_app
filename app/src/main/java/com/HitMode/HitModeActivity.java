@@ -48,7 +48,6 @@ public class HitModeActivity extends Activity {
         iTime = intent.getIntExtra("Time", 0);
         tv_mode.setText(strModeName);
 
-
         myBroadcastReceiver = new MyBroadcastReceiver();
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("ReceiveData");
@@ -93,26 +92,26 @@ public class HitModeActivity extends Activity {
                 switch (iFunction)
                 {
                     case STRAT:
-                        CommonData.dataProcess.sendCmd(0x00, CommonData.HITCMD, iTime, 0x00, 0x00);
+                        CommonData.dataProcess.sendCmd(0x00, CommonData.HITCMD, CommonData.STARTSTT, iTime, 0x00);
                         bStart = true;
                         break;
                     case STOP:
                         if(bStart) {
-                            CommonData.dataProcess.sendCmd(0x00, CommonData.HITCMD, 0x00, 0x01, 0x00);
+                            CommonData.dataProcess.sendCmd(0x00, CommonData.HITCMD, CommonData.PAUSESTT, 0x00, 0x00);
                             bStop = true;
                         }
                         break;
                     case CONTINUE:
                         if(bStop)
                         {
-                            CommonData.dataProcess.sendCmd(0x00, CommonData.HITCMD, 0x00, 0x02, 0x00);
+                            CommonData.dataProcess.sendCmd(0x00, CommonData.HITCMD, CommonData.RESUMESTT, 0x00, 0x00);
                             bStop = false;
                         }
                         break;
                     case RETURN:
                         if(bStart)
                         {
-                            CommonData.dataProcess.sendCmd(0x00, CommonData.HITCMD, 0x00, 0x00, 0x00);
+                            CommonData.dataProcess.sendCmd(0x00, CommonData.HITCMD, CommonData.STOPSTT, 0x00, 0x00);
                         }
                         Intent intent = new Intent(HitModeActivity.this, Hit_Activity.class);
                         startActivity(intent);
@@ -131,8 +130,8 @@ public class HitModeActivity extends Activity {
             if(action.equals("ReceiveData"))
             {
                 int hitNum = intent.getIntExtra("HitNum", 0);
-
-                if(hitNum != 0 && hitNum < CommonData.TARGETNUM)
+                int mode = intent.getIntExtra("Mode", 0);
+                if(mode == CommonData.HITCMD && hitNum != 0 && hitNum < CommonData.TARGETNUM)
                 {
                     arrhitscorenum[hitNum - 1]++;
                     arrhitscores[hitNum - 1] = ""+arrhitscorenum[hitNum - 1];
@@ -144,7 +143,7 @@ public class HitModeActivity extends Activity {
     public void onBackPressed() {
         if(bStart)
         {
-            CommonData.dataProcess.sendCmd(0x00, CommonData.HITCMD, 0x00, 0x00, 0x00);
+            CommonData.dataProcess.sendCmd(0x00, CommonData.HITCMD, CommonData.STOPSTT, 0x00, 0x00);
         }
         Intent intent = new Intent(HitModeActivity.this, Hit_Activity.class);
         startActivity(intent);

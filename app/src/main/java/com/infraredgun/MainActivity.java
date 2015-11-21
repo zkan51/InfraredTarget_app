@@ -65,7 +65,7 @@ public class MainActivity extends Activity {
     private long firstTime;
     public void onBackPressed() {
         if (System.currentTimeMillis() - firstTime < 3000) {
-            Log.e("MainActivity","destroy");
+            Log.i("MainActivity","destroy");
             CommonData.isRunning = false;
             CommonData.dataProcess.stopConn();
             getApplication().onTerminate();
@@ -74,7 +74,6 @@ public class MainActivity extends Activity {
 
         } else {
             firstTime = System.currentTimeMillis();
-            Log.e("Mainactivity","firstback");
             Toast.makeText(this, R.string.try_again, Toast.LENGTH_LONG);
         }
     }

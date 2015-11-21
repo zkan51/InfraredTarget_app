@@ -28,9 +28,10 @@ public class MyApplication  extends Application {
         DetectThread detectThread = new DetectThread();
         detectThread.start();
         context = getApplicationContext();
-        Log.e("MyApplication","start");
+        Log.i("MyApplication","start");
         if(PreferenceUtils.getPrefInt(this, PreferenceConstants.Mode1,0) == 0)
             PreferenceUtils.setPrefInt(this, PreferenceConstants.Mode1, 10000);
+
         if(PreferenceUtils.getPrefInt(this, PreferenceConstants.Mode2,0) == 0)
             PreferenceUtils.setPrefInt(this, PreferenceConstants.Mode2, 20000);
         if(PreferenceUtils.getPrefInt(this, PreferenceConstants.Mode3,0) == 0)

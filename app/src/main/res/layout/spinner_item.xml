@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:paddingRight="5dp"
     android:textColor="#000000"
     android:gravity="left"
-    android:textSize="30sp"
+    android:textSize="50sp"
     android:padding="10dp"
     android:singleLine="true"
-    android:text="New Text"
+    android:text="11"
     android:id="@+id/textView32" />

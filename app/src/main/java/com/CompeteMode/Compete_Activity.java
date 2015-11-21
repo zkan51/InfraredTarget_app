@@ -82,7 +82,7 @@ public class Compete_Activity extends Activity {
     }
     public void onBackPressed() {
         startActivity(new Intent(Compete_Activity.this, MainActivity.class));
-        Log.e("competeActivity", "back");
+        Log.i("competeActivity", "back");
         Compete_Activity.this.finish();
     }
 

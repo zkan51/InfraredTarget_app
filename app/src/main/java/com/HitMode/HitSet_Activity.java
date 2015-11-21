@@ -28,7 +28,6 @@ public class HitSet_Activity extends Activity {
     ArrayAdapter arrayAdapter;
     String strTime;
     int arrTime[];
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,12 +84,10 @@ public class HitSet_Activity extends Activity {
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             // TODO Auto-generated method stub
             strTime=(String) parent.getItemAtPosition(position);
-            Log.e("strtime", strTime);
             arrTime[iMode] = Integer.parseInt(strTime.substring(0,strTime.length() - 1));
         }
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
-            // TODO Auto-generated method stub
         }
     }
     public void onBackPressed() {

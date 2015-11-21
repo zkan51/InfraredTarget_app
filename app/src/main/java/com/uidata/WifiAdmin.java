@@ -45,29 +45,6 @@ public class WifiAdmin {
         }
     }
 
-    // 检查当前WIFI状态
-    public int checkState() {
-        return mWifiManager.getWifiState();
-    }
-
-    // 锁定WifiLock
-    public void acquireWifiLock() {
-        mWifiLock.acquire();
-    }
-
-    // 解锁WifiLock
-    public void releaseWifiLock() {
-        // 判断时候锁定
-        if (mWifiLock.isHeld()) {
-            mWifiLock.acquire();
-        }
-    }
-
-    // 创建一个WifiLock
-    public void creatWifiLock() {
-        mWifiLock = mWifiManager.createWifiLock("Test");
-    }
-
     // 得到配置好的网络
     public List<WifiConfiguration> getConfiguration() {
         return mWifiConfiguration;
@@ -120,6 +97,7 @@ public class WifiAdmin {
         config.SSID = "\"" + SSID + "\"";
 
         WifiConfiguration tempConfig = this.IsExsits(SSID);
+
         if(tempConfig != null) {
             mWifiManager.removeNetwork(tempConfig.networkId);
         }
@@ -162,12 +140,11 @@ public class WifiAdmin {
     {
         List<WifiConfiguration> existingConfigs = mWifiManager.getConfiguredNetworks();
         if(existingConfigs == null)
-            Log.e("wificongfig", "null");
-        Log.e("existingConfigs",""+existingConfigs.size());
+            return null;
         for (WifiConfiguration existingConfig : existingConfigs)
         {
             String strSSID = "\""+SSID+"\"";
-            if (existingConfig.SSID.equals("\""+SSID+"\""))
+            if (existingConfig.SSID.equals(strSSID))
             {
                 return existingConfig;
             }

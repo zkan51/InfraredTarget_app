@@ -19,8 +19,10 @@ public class DetectThread extends Thread {
             if(!CommonData.wifiAdmin.isConnected()) {
                 Log.e("wifi","disconnected");
                 CommonData.wifiAdmin.openWifi();
+                CommonData.wifiAdmin.addNetwork(CommonData.wifiAdmin.CreateWifiInfo(CommonData.SSID, CommonData.PSWD, CommonData.NETTYPE));
             }
             String ssid = "\""+CommonData.SSID+"\"";
+            String s = CommonData.wifiAdmin.getSSID();
             if( !CommonData.wifiAdmin.getSSID().equals(ssid))
             {
                 CommonData.wifiAdmin.addNetwork(CommonData.wifiAdmin.CreateWifiInfo(CommonData.SSID, CommonData.PSWD, CommonData.NETTYPE));

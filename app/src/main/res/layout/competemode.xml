@@ -96,12 +96,10 @@
         android:background="@drawable/showtime"
         android:id="@+id/tv_rest_time"
         android:textSize="@android:dimen/app_icon_size"
-        android:textColor="#fffffd36"
-        android:layout_alignTop="@+id/tv1"
-        android:layout_toRightOf="@+id/tv_competemodename"
+        android:textColor="#ff2030ff"
         android:layout_toEndOf="@+id/tv_competemodename"
         android:layout_marginLeft="46dp"
-        android:layout_marginStart="46dp" />
+        android:layout_alignTop="@+id/tv1" />
 
     <TextView
         android:layout_width="120sp"
@@ -113,7 +111,7 @@
         android:textSize="@android:dimen/app_icon_size"
         android:layout_alignTop="@+id/textView5"
         android:layout_alignStart="@+id/tv_rest_time"
-        android:textColor="#ffd3ff2f" />
+        android:textColor="#ff2030ff" />
 
 
 </RelativeLayout>

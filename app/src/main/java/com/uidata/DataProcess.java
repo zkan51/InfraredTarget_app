@@ -14,7 +14,7 @@ import com.infraredgun.MyApplication;
 
 public class DataProcess {
 
-    private byte[] sData = new byte[CommonData.ARRAYSIZE];
+    private byte[] sData = new byte[100];
 
     public Socket socket;
     private boolean onListening = false;
@@ -64,7 +64,7 @@ public class DataProcess {
                  try
                  {
                      socket = new Socket(CommonData.IP, CommonData.PORT);
-                     Log.i("DataProcess", "socket connected");
+                     Log.e("DataProcess", "socket connected");
                      onListening = true;
                      acceptMsg();
                 }
@@ -98,6 +98,7 @@ public class DataProcess {
                                     try {
                                         rlRead = socket.getInputStream().read(sData);
                                         if (rlRead > 0) {
+                                            Log.e("receiveData",""+rlRead);
                                             receiveFrame();
                                             for (int i = 0; i < 9; i++) {
                                                 sData[i] = 0;
@@ -125,22 +126,22 @@ public class DataProcess {
     }
 
 
-    public int sendCmd(int address,int cmd, int datax, int datay, int dataz)
+    public int sendCmd(int address,int mode, int stt, int value, int dataz)
     {
         int sum =0;
-        sum=datax + datay + dataz;
+        sum=stt + value + dataz;
         sum=sum&0xff;
         int size = CommonData.ARRAYSIZE;
         byte[] frame =new byte[size] ;
-        frame[0] =(byte)CommonData.START;
-        frame[1] =(byte)CommonData.START;
+        frame[0] =(byte)CommonData.STARTBYTE;
+        frame[1] =(byte)CommonData.STARTBYTE;
         frame[2] =(byte)address;
-        frame[3] =(byte)cmd;
-        frame[4] =(byte)datax;
-        frame[5] = (byte)datay;
+        frame[3] =(byte)mode;
+        frame[4] =(byte)stt;
+        frame[5] = (byte)value;
         frame[6] = (byte)dataz;
         frame[7] =(byte)sum;
-        frame[8] =(byte)CommonData.STOP;
+        frame[8] =(byte)CommonData.STOPBYTE;
         if(!socket.isConnected())
         {
             return 0;
@@ -160,12 +161,12 @@ public class DataProcess {
         int last = byteTurnInt(sData[8]);
         int iFunc = byteTurnInt(sData[3]);
         int iAdress = byteTurnInt(sData[2]);
-        if(first == 0X43 && last == 0X34 && second == 0X43)
+        if(first == CommonData.STARTBYTE && last == CommonData.STOPBYTE && second == CommonData.STARTBYTE)
         {
             if(sData[7]==sData[4]+sData[5]+sData[6])
             {
                 Intent intent;
-                if(iFunc == 0x09 && iAdress != 0 && byteTurnInt(sData[4])== 0)//competeMode Reply
+                if(iFunc == 0x09 && byteTurnInt(sData[4])== CommonData.ACKSTT)//competeMode Reply
                 {
                     intent = new Intent("CompeteACK");
                     intent.putExtra("TargetExist",iAdress);
@@ -174,6 +175,7 @@ public class DataProcess {
                 {
                     intent = new Intent("ReceiveData");
                     intent.putExtra("HitNum", iAdress);
+                    intent.putExtra("Mode", iFunc);
                 }
                 MyApplication.getAppContext().sendBroadcast(intent);
             }

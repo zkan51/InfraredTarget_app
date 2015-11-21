@@ -78,6 +78,10 @@ public class Compete_Mode_Activity extends Activity {
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN)
                 {
+                    if(!isOver && isRunning)
+                    {
+                        CommonData.dataProcess.sendCmd(0x00, CommonData.COMPETECMD, CommonData.STOPSTT, 0x00, 0x00);
+                    }
                     isActive = false;
                     startActivity(new Intent(Compete_Mode_Activity.this, Compete_Activity.class));
                     Compete_Mode_Activity.this.finish();
@@ -94,7 +98,7 @@ public class Compete_Mode_Activity extends Activity {
             if(!isRunning) {
                 totalHitNum = 0;
                 nRest_time = CommonData.GAMETIME;
-                tv_hitnum.setText(""+totalHitNum);
+                tv_hitnum.setText(totalHitNum+"");
                 tv_resttime.setText(nRest_time+"");
                 isRunning = true;
                 isOver = false;
@@ -128,7 +132,7 @@ public class Compete_Mode_Activity extends Activity {
                             int nRandom = (int) (Math.random() * nSize);
                             int ntarget = (Integer) list.get(nRandom);
                             int t = nFrenquency + (int) (Math.random() * 11 - 5);
-                            CommonData.dataProcess.sendCmd(ntarget, CommonData.COMPETECMD, t, 0x00, 0x00);
+                            CommonData.dataProcess.sendCmd(ntarget, CommonData.COMPETECMD, CommonData.STARTSTT, t, 0x00);
                             break;
                         case 3:
                             int nRandom1 = (int) (Math.random() * nSize);
@@ -137,8 +141,8 @@ public class Compete_Mode_Activity extends Activity {
                             int ntarget2 = (Integer) list.get(nRandom2);
                             int t1 = nFrenquency + (int) (Math.random() * 11 - 5);
                             int t2 = nFrenquency + (int) (Math.random() * 11 - 5);
-                            CommonData.dataProcess.sendCmd(ntarget1, CommonData.COMPETECMD, t1, 0x00, 0x00);
-                            CommonData.dataProcess.sendCmd(ntarget2, CommonData.COMPETECMD, t2, 0x00, 0x00);
+                            CommonData.dataProcess.sendCmd(ntarget1, CommonData.COMPETECMD, CommonData.STARTSTT, t1, 0x00);
+                            CommonData.dataProcess.sendCmd(ntarget2, CommonData.COMPETECMD, CommonData.STARTSTT, t2, 0x00);
                             break;
                     }
                 }
@@ -165,7 +169,7 @@ public class Compete_Mode_Activity extends Activity {
                 if(nRest_time == 2)//let RunThread stop in advance
                 {
                     isOver = true;
-                    CommonData.dataProcess.sendCmd(0x00, CommonData.COMPETECMD, 0x00, 0x00, 0x00);
+                    CommonData.dataProcess.sendCmd(0x00, CommonData.COMPETECMD, CommonData.STOPSTT, 0x00, 0x00);
                 }
                 Message message=Message.obtain();
                 message.obj=nRest_time;
@@ -179,7 +183,7 @@ public class Compete_Mode_Activity extends Activity {
         {
             while(isActive)
             {
-                CommonData.dataProcess.sendCmd(0x00, CommonData.COMPETECMD, 0x01, 0x00, 0x00);
+                CommonData.dataProcess.sendCmd(0x00, CommonData.COMPETECMD, CommonData.ACKSTT, 0x00, 0x00);
                 try
                 {
                     Thread.sleep(10000);
@@ -207,7 +211,8 @@ public class Compete_Mode_Activity extends Activity {
             if(action.equals("ReceiveData"))
             {
                 int hitNum = intent.getIntExtra("HitNum", 0);
-                if(hitNum != 0 && isRunning)
+                int mode = intent.getIntExtra("Mode", 0);
+                if(hitNum != 0 && isRunning && mode == CommonData.COMPETECMD)
                 {
                     totalHitNum++;
                     tv_hitnum.setText(""+totalHitNum);
@@ -218,8 +223,11 @@ public class Compete_Mode_Activity extends Activity {
     }
     public void onBackPressed()
     {
+        if(!isOver && isRunning)
+        {
+            CommonData.dataProcess.sendCmd(0x00, CommonData.COMPETECMD, CommonData.STOPSTT, 0x00, 0x00);
+        }
         isActive = false;
-        CommonData.dataProcess.sendCmd(0x00, CommonData.COMPETECMD, 0x00, 0x00, 0x00);
         startActivity(new Intent(Compete_Mode_Activity.this, Compete_Activity.class));
         Compete_Mode_Activity.this.finish();
     }
