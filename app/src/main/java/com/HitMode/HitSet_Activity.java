@@ -86,7 +86,7 @@ public class HitSet_Activity extends Activity {
             // TODO Auto-generated method stub
             strTime=(String) parent.getItemAtPosition(position);
             Log.e("strtime", strTime);
-            arrTime[iMode] = Integer.parseInt(strTime.substring(0,strTime.length() - 2));
+            arrTime[iMode] = Integer.parseInt(strTime.substring(0,strTime.length() - 1));
         }
         @Override
         public void onNothingSelected(AdapterView<?> parent) {

@@ -3,6 +3,7 @@ package com.ExerciseMode;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -37,6 +38,7 @@ public class Exercise_Activity extends Activity {
     }
     public void onBackPressed() {
         CommonData.dataProcess.sendCmd(0x00, CommonData.EXERCISECMD, 0x00, 0x00, 0x00);
+        Log.e("Exercsise", "back");
         startActivity(new Intent(Exercise_Activity.this, MainActivity.class));
         Exercise_Activity.this.finish();
     }

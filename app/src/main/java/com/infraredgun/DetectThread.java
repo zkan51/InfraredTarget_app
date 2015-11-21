@@ -2,30 +2,50 @@ package com.infraredgun;
 
 
 
+import android.util.Log;
+
 import com.uidata.CommonData;
 import com.uidata.WifiAdmin;
 
 /**
  * Created by summersunshine on 2015/11/12.
+ * to detect whether wifi is on and socket is connected
  */
 public class DetectThread extends Thread {
     public void run()
     {
         while(CommonData.isRunning)
         {
-            if(!CommonData.wifiAdmin.isConnected())
-            {
+            if(!CommonData.wifiAdmin.isConnected()) {
+                Log.e("wifi","disconnected");
                 CommonData.wifiAdmin.openWifi();
+            }
+            String ssid = "\""+CommonData.SSID+"\"";
+            if( !CommonData.wifiAdmin.getSSID().equals(ssid))
+            {
                 CommonData.wifiAdmin.addNetwork(CommonData.wifiAdmin.CreateWifiInfo(CommonData.SSID, CommonData.PSWD, CommonData.NETTYPE));
                 try
                 {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
+                    Thread.sleep(3000);
+                }
+                catch(Exception e)
+                {
                     e.printStackTrace();
                 }
+            }
+            if(CommonData.dataProcess.socket == null ||
+                    !CommonData.dataProcess.socket.isConnected() ||CommonData.dataProcess.socket.isClosed())
+            {
                 CommonData.dataProcess.startConn();
             }
-
-        }
+            try
+            {
+                Thread.sleep(1500);
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+         }
     }
 }

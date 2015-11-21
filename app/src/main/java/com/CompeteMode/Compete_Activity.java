@@ -5,6 +5,7 @@ package com.CompeteMode;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -81,6 +82,8 @@ public class Compete_Activity extends Activity {
     }
     public void onBackPressed() {
         startActivity(new Intent(Compete_Activity.this, MainActivity.class));
+        Log.e("competeActivity", "back");
         Compete_Activity.this.finish();
     }
+
 }

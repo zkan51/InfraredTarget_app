@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    android:weightSum="1">
 
     <TextView
         android:id="@+id/hitnum"
@@ -12,10 +13,17 @@
         android:textSize="@android:dimen/app_icon_size" />
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_weight="0.20" />
+
+    <TextView
         android:id="@+id/hitscore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textSize="@android:dimen/app_icon_size" />
+        android:textSize="@android:dimen/app_icon_size"
+        android:textColor="#fff1ff24" />
 
 </LinearLayout>

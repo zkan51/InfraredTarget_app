@@ -96,7 +96,7 @@
         android:background="@drawable/showtime"
         android:id="@+id/tv_rest_time"
         android:textSize="@android:dimen/app_icon_size"
-        android:textColor="#ffcaff2e"
+        android:textColor="#fffffd36"
         android:layout_alignTop="@+id/tv1"
         android:layout_toRightOf="@+id/tv_competemodename"
         android:layout_toEndOf="@+id/tv_competemodename"

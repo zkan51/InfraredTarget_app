@@ -3,6 +3,7 @@ package com.HitMode;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -82,6 +83,7 @@ public class Hit_Activity extends Activity {
         }
     }
     public void onBackPressed() {
+        Log.e("Hit_Activity", "backpress");
         Intent intent = new Intent(Hit_Activity.this, MainActivity.class);
         startActivity(intent);
         Hit_Activity.this.finish();

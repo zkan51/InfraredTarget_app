@@ -21,6 +21,7 @@ public class HitModeActivity extends Activity {
 	private TextView tv_stop;
 	private TextView tv_continue;
 	private TextView tv_return;
+    private TextView tv_end;
     private TextView tv_mode;
     private GridLayoutManager gridLayoutManager;
     private RecyclerView recyclerView;
@@ -47,7 +48,6 @@ public class HitModeActivity extends Activity {
         iTime = intent.getIntExtra("Time", 0);
         tv_mode.setText(strModeName);
 
-        CommonData.dataProcess.sendCmd(0x00, CommonData.HITCMD, iTime, 0x00, 0x00);
 
         myBroadcastReceiver = new MyBroadcastReceiver();
         IntentFilter intentFilter = new IntentFilter();
@@ -62,8 +62,9 @@ public class HitModeActivity extends Activity {
         tv_continue = (TextView)this.findViewById(R.id.tv_tryagain);
         tv_return = (TextView)this.findViewById(R.id.tv_compete_return);
         tv_mode = (TextView)this.findViewById(R.id.tv_competemodename);
+        tv_end = (TextView)this.findViewById(R.id.tv_end);
         recyclerView =(RecyclerView)this.findViewById(R.id.rv_show);
-        gridLayoutManager = new GridLayoutManager(this, 3);
+        gridLayoutManager = new GridLayoutManager(this, 4);
         recyclerView.setLayoutManager(gridLayoutManager);
         adapterRecycler = new AdapterRecycler(arrhitscores);
         recyclerView.setAdapter(adapterRecycler);
@@ -75,7 +76,7 @@ public class HitModeActivity extends Activity {
         tv_continue.setOnTouchListener(continuetouchListener);
         TouchListener returnTouchListener = new TouchListener(RETURN);
         tv_return.setOnTouchListener(returnTouchListener);
-
+        tv_end.setOnTouchListener(returnTouchListener);
 
 	}
     public class TouchListener implements View.OnTouchListener
@@ -130,7 +131,8 @@ public class HitModeActivity extends Activity {
             if(action.equals("ReceiveData"))
             {
                 int hitNum = intent.getIntExtra("HitNum", 0);
-                if(hitNum != 0)
+
+                if(hitNum != 0 && hitNum < CommonData.TARGETNUM)
                 {
                     arrhitscorenum[hitNum - 1]++;
                     arrhitscores[hitNum - 1] = ""+arrhitscorenum[hitNum - 1];
@@ -147,5 +149,10 @@ public class HitModeActivity extends Activity {
         Intent intent = new Intent(HitModeActivity.this, Hit_Activity.class);
         startActivity(intent);
         HitModeActivity.this.finish();
+    }
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        unregisterReceiver(myBroadcastReceiver);
     }
 }

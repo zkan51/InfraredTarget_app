@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
+    android:layout_height="match_parent"
     android:background="@drawable/model_main"
     >
     
@@ -68,7 +68,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toStartOf="@+id/tv_stop"
-        android:layout_alignTop="@+id/tv_compete_start"
-        android:layout_alignBottom="@+id/tv_tryagain" />
+        android:layout_alignBottom="@+id/tv_end"
+        android:layout_below="@+id/tv_compete_start" />
+
+    <TextView
+        android:id="@+id/tv_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/model"
+        android:gravity="center"
+        android:text="@string/end"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:layout_below="@+id/tv_tryagain"
+        android:layout_toEndOf="@+id/rv_show" />
 
 </RelativeLayout>

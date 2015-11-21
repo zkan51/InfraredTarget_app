@@ -3,6 +3,7 @@ package com.infraredgun;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -15,6 +16,8 @@ import com.ExerciseMode.Exercise_Activity;
 import com.HitMode.Hit_Activity;
 import com.uidata.CommonData;
 import com.uidata.WifiAdmin;
+
+import static java.lang.System.exit;
 
 
 public class MainActivity extends Activity {
@@ -62,13 +65,17 @@ public class MainActivity extends Activity {
     private long firstTime;
     public void onBackPressed() {
         if (System.currentTimeMillis() - firstTime < 3000) {
-            finish();
-            System.exit(0);
+            Log.e("MainActivity","destroy");
+            CommonData.isRunning = false;
+            CommonData.dataProcess.stopConn();
+            getApplication().onTerminate();
+            this.finish();
+            exit(0);
 
         } else {
             firstTime = System.currentTimeMillis();
-            Toast.makeText(this, R.string.try_again, Toast.LENGTH_SHORT);
-            CommonData.isRunning = false;
+            Log.e("Mainactivity","firstback");
+            Toast.makeText(this, R.string.try_again, Toast.LENGTH_LONG);
         }
     }
  }

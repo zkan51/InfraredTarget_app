@@ -11,15 +11,13 @@ import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.net.wifi.WifiManager.WifiLock;
+import android.util.Log;
 
 public class WifiAdmin {
 
     // 定义WifiManager对象
     private WifiManager mWifiManager;
-    // 定义WifiInfo对象
-    private WifiInfo mWifiInfo;
-    // 扫描出的网络连接列表
-    private List<ScanResult> mWifiList;
+
     // 网络连接列表
     private List<WifiConfiguration> mWifiConfiguration;
     // 定义一个WifiLock
@@ -31,8 +29,6 @@ public class WifiAdmin {
         // 取得WifiManager对象
         mWifiManager = (WifiManager) context
                 .getSystemService(Context.WIFI_SERVICE);
-        // 取得WifiInfo对象
-        mWifiInfo = mWifiManager.getConnectionInfo();
     }
 
     // 打开WIFI
@@ -91,53 +87,12 @@ public class WifiAdmin {
     public void startScan() {
         mWifiManager.startScan();
         // 得到扫描结果
-        mWifiList = mWifiManager.getScanResults();
+
         // 得到配置好的网络连接
         mWifiConfiguration = mWifiManager.getConfiguredNetworks();
     }
 
-    // 得到网络列表
-    public List<ScanResult> getWifiList() {
-        return mWifiList;
-    }
 
-    // 查看扫描结果
-    public StringBuilder lookUpScan() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < mWifiList.size(); i++) {
-            stringBuilder.append("Index_" + new Integer(i + 1).toString() + ":");
-            // 将ScanResult信息转换成一个字符串包
-            // 其中把包括：BSSID、SSID、capabilities、frequency、level
-            stringBuilder.append((mWifiList.get(i)).toString());
-            stringBuilder.append("/n");
-        }
-        return stringBuilder;
-    }
-
-    // 得到MAC地址
-    public String getMacAddress() {
-        return (mWifiInfo == null) ? "NULL" : mWifiInfo.getMacAddress();
-    }
-
-    // 得到接入点的BSSID
-    public String getBSSID() {
-        return (mWifiInfo == null) ? "NULL" : mWifiInfo.getBSSID();
-    }
-
-    // 得到IP地址
-    public int getIPAddress() {
-        return (mWifiInfo == null) ? 0 : mWifiInfo.getIpAddress();
-    }
-
-    // 得到连接的ID
-    public int getNetworkId() {
-        return (mWifiInfo == null) ? 0 : mWifiInfo.getNetworkId();
-    }
-
-    // 得到WifiInfo的所有信息包
-    public String getWifiInfo() {
-        return (mWifiInfo == null) ? "NULL" : mWifiInfo.toString();
-    }
 
     // 添加一个网络并连接
     public boolean addNetwork(WifiConfiguration wcg) {
@@ -206,14 +161,23 @@ public class WifiAdmin {
     private WifiConfiguration IsExsits(String SSID)
     {
         List<WifiConfiguration> existingConfigs = mWifiManager.getConfiguredNetworks();
+        if(existingConfigs == null)
+            Log.e("wificongfig", "null");
+        Log.e("existingConfigs",""+existingConfigs.size());
         for (WifiConfiguration existingConfig : existingConfigs)
         {
+            String strSSID = "\""+SSID+"\"";
             if (existingConfig.SSID.equals("\""+SSID+"\""))
             {
                 return existingConfig;
             }
         }
         return null;
+    }
+
+    public String getSSID()
+    {
+        return mWifiManager.getConnectionInfo().getSSID();
     }
     public boolean isConnected()
     {

@@ -23,7 +23,13 @@ public class AdapterRecycler  extends  RecyclerView.Adapter<AdapterRecycler.View
     @Override
     public void onBindViewHolder(AdapterRecycler.ViewHolder viewHolder, int position) {
             int num = position + 1;
-        	viewHolder.tv_hitnum.setText(""+num);
+            if(num<10)
+            {
+                viewHolder.tv_hitnum.setText("0"+num);
+            }
+        	else {
+                viewHolder.tv_hitnum.setText("" + num);
+            }
         	viewHolder.tv_hitscore.setText(hitscores[position]);
     }
     public static class ViewHolder extends RecyclerView.ViewHolder{

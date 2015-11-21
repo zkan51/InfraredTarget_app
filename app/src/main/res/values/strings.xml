@@ -8,6 +8,7 @@
     <string name="hitMode">打靶模式</string>
     <string name="start">开始</string>
     <string name="stop">暂停</string>
+    <string name="end">结束</string>
     <string name="strcontinue">继续</string>
     <string name="strreturn">返回</string>
     <string name="confirm">确定</string>
@@ -31,12 +32,12 @@
     <string name="title_activity_compete">ComPete_Activity</string>
 
     <string-array name="ModeTime">
+        <item>10s</item>
+        <item>20s</item>
         <item>30s</item>
+        <item>40s</item>
+        <item>50s</item>
         <item>60s</item>
-        <item>90s</item>
-        <item>120s</item>
-        <item>150s</item>
-        <item>180s</item>
     </string-array>
 
     <string name="title_activity_exercise_">Exercise_Activity</string>

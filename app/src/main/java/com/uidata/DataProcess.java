@@ -12,10 +12,9 @@ import android.os.Handler;
 
 import com.infraredgun.MyApplication;
 
-
 public class DataProcess {
 
-    private byte[] sData = new byte[9];
+    private byte[] sData = new byte[CommonData.ARRAYSIZE];
 
     public Socket socket;
     private boolean onListening = false;
@@ -30,7 +29,6 @@ public class DataProcess {
     }
 
     public boolean sendData(byte[] data) throws IOException {
-        // TODO Auto-generated method stub
         OutputStream out=socket.getOutputStream();
         if(out==null) return false;
         out.write(data);
@@ -50,14 +48,11 @@ public class DataProcess {
         return true;
     }
 
-
     public void startConn() {
-
         new Thread(new Runnable()
         {
             @Override
             public void run() {
-
                 try
                 {
                     Thread.sleep(1000);
@@ -69,7 +64,7 @@ public class DataProcess {
                  try
                  {
                      socket = new Socket(CommonData.IP, CommonData.PORT);
-                     Log.e("DataProcess", "socket connected");
+                     Log.i("DataProcess", "socket connected");
                      onListening = true;
                      acceptMsg();
                 }
@@ -117,6 +112,7 @@ public class DataProcess {
                         }
                     }
                     catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
             });
