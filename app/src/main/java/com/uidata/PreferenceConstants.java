@@ -12,4 +12,5 @@ public class PreferenceConstants {
 	public final static String Mode1= MyApplication.getAppContext().getString(R.string.mode1);
 	public final static String Mode2 = MyApplication.getAppContext().getString(R.string.mode2);
     public final static String Mode3= MyApplication.getAppContext().getString(R.string.mode3);
+    public final static String GameTime = "gameTime";
 }

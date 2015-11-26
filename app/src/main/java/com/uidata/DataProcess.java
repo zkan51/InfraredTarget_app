@@ -42,8 +42,10 @@ public class DataProcess {
             socket.shutdownInput();
             socket.shutdownOutput();
             socket.close();
+            socket = null;
         } catch (IOException e) {
             e.printStackTrace();
+            socket = null;
         }
         return true;
     }

@@ -27,8 +27,8 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="landscape"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,37 +38,44 @@
         <activity
             android:name="com.HitMode.HitModeActivity"
             android:label="@string/title_activity_hiting"
-            android:screenOrientation="landscape"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.HitMode.Hit_Activity"
             android:label="@string/title_activity_hit_"
-            android:screenOrientation="landscape"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.HitMode.HitSet_Activity"
             android:label="@string/title_activity_hit_set_"
-            android:screenOrientation="landscape"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.ExerciseMode.Exercise_Activity"
             android:label="@string/title_activity_exercise_"
-            android:screenOrientation="landscape"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.CompeteMode.Compete_Activity"
             android:label="@string/title_activity_compete"
-            android:screenOrientation="landscape"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.CompeteMode.Compete_Mode_Activity"
             android:label="@string/title_activity_compete__mode_"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name="com.CompeteMode.CompeteSet"
+            android:label="@string/title_activity_compete_set"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
         </activity>
     </application>
 

@@ -33,10 +33,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="56dp"
-        android:background="@drawable/model"
+        android:background="@drawable/pressed"
         android:gravity="center"
         android:text="@string/start"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         android:textSize="30sp"
         android:layout_centerVertical="true"
         android:layout_alignStart="@+id/tv_compete_return" />

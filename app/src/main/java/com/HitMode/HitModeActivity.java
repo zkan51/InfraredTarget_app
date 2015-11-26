@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -37,6 +38,12 @@ public class HitModeActivity extends Activity {
     boolean bStart = false;
     boolean bStop = false;
 
+
+    Drawable dwPress;
+    Drawable dwDisable;
+    int Gray;
+    int Black;
+
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,6 +54,11 @@ public class HitModeActivity extends Activity {
         String strModeName = intent.getStringExtra("ModeName");
         iTime = intent.getIntExtra("Time", 0);
         tv_mode.setText(strModeName);
+
+        dwPress = getResources().getDrawable(R.drawable.pressed);
+        dwDisable= getResources().getDrawable(R.drawable.disabled);
+        Gray= getResources().getColor(R.color.gray);
+        Black = getResources().getColor(R.color.black);
 
         myBroadcastReceiver = new MyBroadcastReceiver();
         IntentFilter intentFilter = new IntentFilter();
@@ -76,7 +88,14 @@ public class HitModeActivity extends Activity {
         TouchListener returnTouchListener = new TouchListener(RETURN);
         tv_return.setOnTouchListener(returnTouchListener);
         tv_end.setOnTouchListener(returnTouchListener);
-
+        tv_start.setBackground(dwPress);
+        tv_start.setTextColor(Black);
+        tv_continue.setBackground(dwDisable);
+        tv_continue.setTextColor(Gray);
+        tv_stop.setBackground(dwDisable);
+        tv_stop.setTextColor(Gray);
+        tv_end.setBackground(dwPress);
+        tv_end.setTextColor(Black);
 	}
     public class TouchListener implements View.OnTouchListener
     {
@@ -93,17 +112,31 @@ public class HitModeActivity extends Activity {
                 {
                     case STRAT:
                         CommonData.dataProcess.sendCmd(0x00, CommonData.HITCMD, CommonData.STARTSTT, iTime, 0x00);
+                        tv_start.setBackground(dwDisable);
+                        tv_start.setTextColor(Gray);
+                        tv_continue.setBackground(dwPress);
+                        tv_continue.setTextColor(Black);
+                        tv_stop.setBackground(dwPress);
+                        tv_stop.setTextColor(Black);
                         bStart = true;
                         break;
                     case STOP:
-                        if(bStart) {
+                        if(bStart&&!bStop) {
                             CommonData.dataProcess.sendCmd(0x00, CommonData.HITCMD, CommonData.PAUSESTT, 0x00, 0x00);
+                            tv_stop.setBackground(dwDisable);
+                            tv_stop.setTextColor(Gray);
+                            tv_continue.setBackground(dwPress);
+                            tv_continue.setTextColor(Black);
                             bStop = true;
                         }
                         break;
                     case CONTINUE:
-                        if(bStop)
+                        if(bStop&&bStart)
                         {
+                            tv_stop.setBackground(dwPress);
+                            tv_stop.setTextColor(Black);
+                            tv_continue.setBackground(dwDisable);
+                            tv_continue.setTextColor(Gray);
                             CommonData.dataProcess.sendCmd(0x00, CommonData.HITCMD, CommonData.RESUMESTT, 0x00, 0x00);
                             bStop = false;
                         }

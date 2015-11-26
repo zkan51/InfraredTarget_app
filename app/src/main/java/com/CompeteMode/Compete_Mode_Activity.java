@@ -5,6 +5,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,10 +19,11 @@ import android.widget.TextView;
 import com.infraredgun.DetectThread;
 import com.infraredgun.R;
 import com.uidata.CommonData;
+import com.uidata.PreferenceConstants;
+import com.uidata.PreferenceUtils;
 
 import java.util.ArrayList;
-import java.util.Set;
-import java.util.TreeSet;
+
 
 public class Compete_Mode_Activity extends Activity {
     private TextView tv_resttime;
@@ -28,7 +31,7 @@ public class Compete_Mode_Activity extends Activity {
     private TextView tv_return;
     private TextView tv_start;
     private TextView tv_mode_name;
-    int nRest_time = CommonData.GAMETIME;
+    int nRest_time ;
     int nFrenquency;
     int nDifficult;
     boolean isRunning = false;//to signal whether is started
@@ -38,10 +41,19 @@ public class Compete_Mode_Activity extends Activity {
     MyBroadCastReceiver myBroadcastReceiver;
     ArrayList list = new ArrayList();
     Handler timeHandler;
+
+    Drawable dwPress;
+    Drawable dwDisable;
+    int Gray;
+    int Black;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.competemode);
+        dwPress = getResources().getDrawable(R.drawable.pressed);
+        dwDisable= getResources().getDrawable(R.drawable.disabled);
+        Gray= getResources().getColor(R.color.gray);
+        Black = getResources().getColor(R.color.black);
         Intent intent = getIntent();
         nFrenquency = intent.getIntExtra("Time", 0);//how frequent it falls
         String strModeName = intent.getStringExtra("ModeName");
@@ -52,6 +64,12 @@ public class Compete_Mode_Activity extends Activity {
         tv_hitnum = (TextView)findViewById(R.id.tv_hit_num);
         tv_mode_name = (TextView)findViewById(R.id.tv_competemodename);
         tv_mode_name.setText(strModeName);
+        nRest_time = PreferenceUtils.getPrefInt(this, PreferenceConstants.GameTime, 0);
+        if(nRest_time == 0)
+        {
+            nRest_time = 180;
+            PreferenceUtils.setPrefInt(this, PreferenceConstants.GameTime, nRest_time);
+        }
         tv_resttime.setText(nRest_time+"");
 
         myBroadcastReceiver = new MyBroadCastReceiver();
@@ -96,8 +114,9 @@ public class Compete_Mode_Activity extends Activity {
         public boolean onTouch(View v, MotionEvent event)
         {
             if(!isRunning) {
+                tv_start.setBackground(dwPress);
+                tv_start.setTextColor(Gray);
                 totalHitNum = 0;
-                nRest_time = CommonData.GAMETIME;
                 tv_hitnum.setText(totalHitNum+"");
                 tv_resttime.setText(nRest_time+"");
                 isRunning = true;
@@ -175,7 +194,11 @@ public class Compete_Mode_Activity extends Activity {
                 message.obj=nRest_time;
                 timeHandler.sendMessage(message);
             }
-            isRunning = false;
+            if(nRest_time == 0) {
+                isRunning = false;
+                tv_start.setBackground(dwPress);
+                tv_start.setTextColor(Black);
+            }
         }
     }
     class DetectTargetThread extends Thread{//to know what targets are used
@@ -186,7 +209,7 @@ public class Compete_Mode_Activity extends Activity {
                 CommonData.dataProcess.sendCmd(0x00, CommonData.COMPETECMD, CommonData.ACKSTT, 0x00, 0x00);
                 try
                 {
-                    Thread.sleep(10000);
+                    Thread.sleep(CommonData.DetectTime);
                 }catch(Exception e)
                 {
                 }

@@ -36,6 +36,8 @@ public class MyApplication  extends Application {
             PreferenceUtils.setPrefInt(this, PreferenceConstants.Mode2, 20000);
         if(PreferenceUtils.getPrefInt(this, PreferenceConstants.Mode3,0) == 0)
             PreferenceUtils.setPrefInt(this, PreferenceConstants.Mode3,30000);
+        if(PreferenceUtils.getPrefInt(this, PreferenceConstants.GameTime,0) == 0)
+            PreferenceUtils.setPrefInt(this, PreferenceConstants.GameTime,180000);
     }
     public static Context getAppContext() {
         return MyApplication.context;

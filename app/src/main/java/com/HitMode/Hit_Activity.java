@@ -59,6 +59,7 @@ public class Hit_Activity extends Activity {
                 if(event.getAction() == MotionEvent.ACTION_DOWN)
                 {
                     startActivity(new Intent(Hit_Activity.this, HitSet_Activity.class));
+                    Hit_Activity.this.finish();
                 }
                 return false;
             }

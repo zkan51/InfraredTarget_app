@@ -26,6 +26,7 @@ public class DetectThread extends Thread {
             if( !CommonData.wifiAdmin.getSSID().equals(ssid))
             {
                 CommonData.wifiAdmin.addNetwork(CommonData.wifiAdmin.CreateWifiInfo(CommonData.SSID, CommonData.PSWD, CommonData.NETTYPE));
+                CommonData.dataProcess.stopConn();
                 try
                 {
                     Thread.sleep(3000);
@@ -35,8 +36,7 @@ public class DetectThread extends Thread {
                     e.printStackTrace();
                 }
             }
-            if(CommonData.dataProcess.socket == null ||
-                    !CommonData.dataProcess.socket.isConnected() ||CommonData.dataProcess.socket.isClosed())
+            if(CommonData.dataProcess.socket == null || !CommonData.dataProcess.socket.isConnected() || CommonData.dataProcess.socket.isClosed())
             {
                 CommonData.dataProcess.startConn();
             }

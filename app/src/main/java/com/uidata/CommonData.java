@@ -3,11 +3,16 @@ public class CommonData  {
     public static DataProcess dataProcess = new DataProcess();
     public static String IP = "10.10.100.254";
     public static int  PORT =  8899;
+    //public static String IP = "192.168.43.1";
+   // public static int  PORT =  12345;
     public static  int TARGETNUM = 50;
     public static boolean isRunning = true;//to control detectThread
     public static WifiAdmin wifiAdmin ;
     public static String SSID = "For Cs Laser";
     public static String PSWD = "1357924680";
+
+    //public static String SSID = "a-b";
+    //public static String PSWD = "123456789";
 
     public static int NETTYPE = 3;
     public static int ARRAYSIZE = 9;
@@ -31,4 +36,6 @@ public class CommonData  {
 
     public static int EXERCISE_TIME = 30;
     public static int GAMETIME = 180;
+
+    public static int DetectTime = 10000;
 }
