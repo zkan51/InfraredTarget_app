@@ -38,7 +38,8 @@
         android:textSize="30sp"
         android:layout_centerVertical="true"
         android:layout_alignStart="@+id/tv_compete_start"
-        android:layout_marginBottom="15dp" />
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="20dp" />
 
     <TextView
         android:id="@+id/tv_tryagain"
@@ -51,7 +52,8 @@
         android:textSize="30sp"
         android:layout_below="@+id/tv_stop"
         android:layout_toEndOf="@+id/rv_show"
-        android:layout_marginBottom="15dp" />
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="20dp" />
 
     <TextView
         android:id="@+id/tv_compete_start"
@@ -65,8 +67,8 @@
         android:layout_below="@+id/tv_compete_return"
         android:layout_alignStart="@+id/tv_compete_return"
         android:layout_marginBottom="15dp"
-        android:editable="false"
-        android:clickable="false" />
+
+        android:layout_marginRight="20dp" />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_show"
         android:layout_width="match_parent"
@@ -74,7 +76,7 @@
         android:layout_toStartOf="@+id/tv_stop"
         android:layout_below="@+id/tv_compete_return"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="30dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp" />
 
@@ -89,6 +91,7 @@
         android:textSize="30sp"
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/rv_show"
-        android:layout_marginBottom="15dp" />
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="20dp" />
 
 </RelativeLayout>

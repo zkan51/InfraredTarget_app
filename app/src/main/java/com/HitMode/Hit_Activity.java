@@ -34,9 +34,10 @@ public class Hit_Activity extends Activity {
         tvmode1time =(TextView)findViewById(R.id.tvmode1time);
         tvmode2time =(TextView)findViewById(R.id.tvmode2time);
         tvmode3time =(TextView)findViewById(R.id.tvmode3time);
-        tvmode1time.setText(PreferenceUtils.getPrefInt(this,PreferenceConstants.Mode1,0)+"s");
-        tvmode2time.setText(PreferenceUtils.getPrefInt(this,PreferenceConstants.Mode2,0)+"s");
-        tvmode3time.setText(PreferenceUtils.getPrefInt(this,PreferenceConstants.Mode3,0)+"s");
+
+        tvmode1time.setText(PreferenceUtils.getPrefInt(this,PreferenceConstants.Mode1,30)+"s");
+        tvmode2time.setText(PreferenceUtils.getPrefInt(this,PreferenceConstants.Mode2,15)+"s");
+        tvmode3time.setText(PreferenceUtils.getPrefInt(this,PreferenceConstants.Mode3,10)+"s");
         TouchListener touchListener = new TouchListener();
         tv_mode1.setOnTouchListener(touchListener);
         tv_mode2.setOnTouchListener(touchListener);

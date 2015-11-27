@@ -29,15 +29,16 @@ public class MyApplication  extends Application {
         detectThread.start();
         context = getApplicationContext();
         Log.i("MyApplication","start");
+
         if(PreferenceUtils.getPrefInt(this, PreferenceConstants.Mode1,0) == 0)
-            PreferenceUtils.setPrefInt(this, PreferenceConstants.Mode1, 10000);
+            PreferenceUtils.setPrefInt(this, PreferenceConstants.Mode1, 30);
 
         if(PreferenceUtils.getPrefInt(this, PreferenceConstants.Mode2,0) == 0)
-            PreferenceUtils.setPrefInt(this, PreferenceConstants.Mode2, 20000);
+            PreferenceUtils.setPrefInt(this, PreferenceConstants.Mode2, 15);
         if(PreferenceUtils.getPrefInt(this, PreferenceConstants.Mode3,0) == 0)
-            PreferenceUtils.setPrefInt(this, PreferenceConstants.Mode3,30000);
+            PreferenceUtils.setPrefInt(this, PreferenceConstants.Mode3,10);
         if(PreferenceUtils.getPrefInt(this, PreferenceConstants.GameTime,0) == 0)
-            PreferenceUtils.setPrefInt(this, PreferenceConstants.GameTime,180000);
+            PreferenceUtils.setPrefInt(this, PreferenceConstants.GameTime,180);
     }
     public static Context getAppContext() {
         return MyApplication.context;

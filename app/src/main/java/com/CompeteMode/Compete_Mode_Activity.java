@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -64,14 +65,18 @@ public class Compete_Mode_Activity extends Activity {
         tv_hitnum = (TextView)findViewById(R.id.tv_hit_num);
         tv_mode_name = (TextView)findViewById(R.id.tv_competemodename);
         tv_mode_name.setText(strModeName);
+
         nRest_time = PreferenceUtils.getPrefInt(this, PreferenceConstants.GameTime, 0);
+
+        Log.e("nrestime1", ""+nRest_time);
         if(nRest_time == 0)
         {
             nRest_time = 180;
             PreferenceUtils.setPrefInt(this, PreferenceConstants.GameTime, nRest_time);
         }
         tv_resttime.setText(nRest_time+"");
-
+        String time =String.valueOf(nRest_time);
+        Log.e("nrestTime", time);
         myBroadcastReceiver = new MyBroadCastReceiver();
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("ReceiveData");

@@ -28,11 +28,18 @@ public class DataProcess {
         socket  = new Socket();
     }
 
-    public boolean sendData(byte[] data) throws IOException {
-        OutputStream out=socket.getOutputStream();
-        if(out==null) return false;
-        out.write(data);
-        return true;
+    public boolean sendData(byte[] data)  {
+        try {
+            OutputStream out = socket.getOutputStream();
+            if (out == null) return false;
+            out.write(data);
+            return true;
+        }catch (IOException e)
+        {
+            e.printStackTrace();
+            stopConn();
+            return false;
+        }
     }
 
     public boolean stopConn() {
@@ -148,11 +155,7 @@ public class DataProcess {
         {
             return 0;
         }
-        try {
-            sendData(frame);
-        } catch (IOException e) {
-
-        }
+        sendData(frame);
         return size;
     }
 

@@ -47,18 +47,17 @@ public class HitModeActivity extends Activity {
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.model_main);
+        dwPress = getResources().getDrawable(R.drawable.pressed);
+        dwDisable= getResources().getDrawable(R.drawable.disabled);
+        Gray= getResources().getColor(R.color.gray);
+        Black = getResources().getColor(R.color.black);
+
         initUI();
         Intent intent = getIntent();
         String strModeName = intent.getStringExtra("ModeName");
         iTime = intent.getIntExtra("Time", 0);
         tv_mode.setText(strModeName);
-
-        dwPress = getResources().getDrawable(R.drawable.pressed);
-        dwDisable= getResources().getDrawable(R.drawable.disabled);
-        Gray= getResources().getColor(R.color.gray);
-        Black = getResources().getColor(R.color.black);
 
         myBroadcastReceiver = new MyBroadcastReceiver();
         IntentFilter intentFilter = new IntentFilter();
@@ -77,6 +76,10 @@ public class HitModeActivity extends Activity {
         recyclerView =(RecyclerView)this.findViewById(R.id.rv_show);
         gridLayoutManager = new GridLayoutManager(this, 4);
         recyclerView.setLayoutManager(gridLayoutManager);
+        for(int i = 0; i < CommonData.TARGETNUM; i++)
+        {
+            arrhitscores[i] = "0";
+        }
         adapterRecycler = new AdapterRecycler(arrhitscores);
         recyclerView.setAdapter(adapterRecycler);
         TouchListener starttouchListener = new TouchListener(STRAT);
@@ -111,7 +114,7 @@ public class HitModeActivity extends Activity {
                 switch (iFunction)
                 {
                     case STRAT:
-                        CommonData.dataProcess.sendCmd(0x00, CommonData.HITCMD, CommonData.STARTSTT, iTime, 0x00);
+                        CommonData.dataProcess.sendCmd(0x00, CommonData.HITCMD, CommonData.STARTSTT, iTime*1000, 0x00);
                         tv_start.setBackground(dwDisable);
                         tv_start.setTextColor(Gray);
                         tv_continue.setBackground(dwPress);

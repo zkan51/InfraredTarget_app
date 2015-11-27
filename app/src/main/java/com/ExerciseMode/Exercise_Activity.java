@@ -86,7 +86,9 @@ public class Exercise_Activity extends Activity {
         });
     }
     public void onBackPressed() {
-        CommonData.dataProcess.sendCmd(0x00, CommonData.EXERCISECMD, CommonData.STOPSTT, 0x00, 0x00);
+        if(bStart) {
+            CommonData.dataProcess.sendCmd(0x00, CommonData.EXERCISECMD, CommonData.STOPSTT, 0x00, 0x00);
+        }
         Log.i("Exercsise", "back");
         startActivity(new Intent(Exercise_Activity.this, MainActivity.class));
         Exercise_Activity.this.finish();

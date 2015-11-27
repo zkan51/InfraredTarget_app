@@ -52,7 +52,7 @@ public class Compete_Activity extends Activity {
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN)
                 {
-                    startActivity(new Intent(Compete_Activity.this, MainActivity.class));
+                    startActivity(new Intent(Compete_Activity.this, CompeteSet.class));
                 }
                 return false;
             }

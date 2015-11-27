@@ -85,9 +85,10 @@ public class PreferenceUtils {
 		return settings.getLong(key, defaultValue);
 	}
 
-	public static void clearPreference(Context context,
-			final SharedPreferences p) {
-		final Editor editor = p.edit();
+	public static void clearPreference(Context context) {
+        final SharedPreferences settings = PreferenceManager
+                .getDefaultSharedPreferences(context);
+		final Editor editor = settings.edit();
 		editor.clear();
 		editor.commit();
 	}
