@@ -151,6 +151,7 @@ public class DataProcess {
         frame[6] = (byte)dataz;
         frame[7] =(byte)sum;
         frame[8] =(byte)CommonData.STOPBYTE;
+        Log.e("senddata", "senddata");
         if(!socket.isConnected())
         {
             return 0;
@@ -171,16 +172,18 @@ public class DataProcess {
             if(sData[7]==sData[4]+sData[5]+sData[6])
             {
                 Intent intent;
-                if(iFunc == 0x09 && byteTurnInt(sData[4])== CommonData.ACKSTT)//competeMode Reply
+                if(iFunc == CommonData.COMPETECMD && byteTurnInt(sData[4])== CommonData.ACKSTT)//competeMode Reply
                 {
+                    Log.e("ack","ack" + " " +iAdress
+                    );
                     intent = new Intent("CompeteACK");
                     intent.putExtra("TargetExist",iAdress);
                 }
                 else
                 {
+                    Log.e("Hitnum", ""+iAdress);
                     intent = new Intent("ReceiveData");
                     intent.putExtra("HitNum", iAdress);
-                    intent.putExtra("Mode", iFunc);
                 }
                 MyApplication.getAppContext().sendBroadcast(intent);
             }

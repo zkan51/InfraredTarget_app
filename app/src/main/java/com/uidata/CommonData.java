@@ -8,7 +8,7 @@ public class CommonData  {
     public static  int TARGETNUM = 50;
     public static boolean isRunning = true;//to control detectThread
     public static WifiAdmin wifiAdmin ;
-    public static String SSID = "For Cs Laser";
+    public static String SSID = "For Cs Infrared";
     public static String PSWD = "1357924680";
 
    //public static String SSID = "a-b";
@@ -20,6 +20,7 @@ public class CommonData  {
     public static int EXERCISECMD = 0x01;
     public static int HITCMD = 0x02;
     public static int COMPETECMD = 0x03;
+    public static int ACKCMD = 0x05;
     public static int STARTBYTE = 0xdf;
     public static int STOPBYTE = 0xfd;
 
@@ -30,11 +31,11 @@ public class CommonData  {
     public static int STARTSTT = 0x04;
 
 
-    public static int COMMONTIME = 30;
-    public static int PROGRESSTIME = 15;
-    public static int CHALLENGETIME = 10;
+    public static int COMMONTIME = 30 * 1000;
+    public static int PROGRESSTIME = 15 * 1000;
+    public static int CHALLENGETIME = 10 *1000;
 
     public static int EXERCISE_TIME = 30*1000;
 
-    public static int DetectTime = 10000;
+    public static int DetectTime = 10 * 1000;
 }

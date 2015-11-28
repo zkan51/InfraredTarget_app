@@ -32,7 +32,7 @@ public class Compete_Mode_Activity extends Activity {
     private TextView tv_return;
     private TextView tv_start;
     private TextView tv_mode_name;
-    int nRest_time ;
+    int nRest_time;
     int nFrenquency;
     int nDifficult;
     boolean isRunning = false;//to signal whether is started
@@ -42,40 +42,45 @@ public class Compete_Mode_Activity extends Activity {
     MyBroadCastReceiver myBroadcastReceiver;
     ArrayList list = new ArrayList();
     Handler timeHandler;
+    Handler showHandler;
 
     Drawable dwPress;
     Drawable dwDisable;
     int Gray;
     int Black;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.competemode);
         dwPress = getResources().getDrawable(R.drawable.pressed);
-        dwDisable= getResources().getDrawable(R.drawable.disabled);
-        Gray= getResources().getColor(R.color.gray);
+        dwDisable = getResources().getDrawable(R.drawable.disabled);
+        Gray = getResources().getColor(R.color.gray);
         Black = getResources().getColor(R.color.black);
         Intent intent = getIntent();
         nFrenquency = intent.getIntExtra("Time", 0);//how frequent it falls
         String strModeName = intent.getStringExtra("ModeName");
         nDifficult = intent.getIntExtra("Difficult", 0);
-        tv_resttime = (TextView)findViewById(R.id.tv_rest_time);
-        tv_return = (TextView)findViewById(R.id.tv_compete_return);
-        tv_start = (TextView)findViewById(R.id.tv_compete_start);
-        tv_hitnum = (TextView)findViewById(R.id.tv_hit_num);
-        tv_mode_name = (TextView)findViewById(R.id.tv_competemodename);
+        tv_resttime = (TextView) findViewById(R.id.tv_rest_time);
+        tv_return = (TextView) findViewById(R.id.tv_compete_return);
+        tv_start = (TextView) findViewById(R.id.tv_compete_start);
+        tv_hitnum = (TextView) findViewById(R.id.tv_hit_num);
+        tv_mode_name = (TextView) findViewById(R.id.tv_competemodename);
         tv_mode_name.setText(strModeName);
 
         nRest_time = PreferenceUtils.getPrefInt(this, PreferenceConstants.GameTime, 0);
 
-        Log.e("nrestime1", ""+nRest_time);
-        if(nRest_time == 0)
-        {
+        isRunning = false;
+        isOver = false;
+        isActive = true;
+
+        Log.e("nrestime1", "" + nRest_time);
+        if (nRest_time == 0) {
             nRest_time = 180;
             PreferenceUtils.setPrefInt(this, PreferenceConstants.GameTime, nRest_time);
         }
-        tv_resttime.setText(nRest_time+"");
-        String time =String.valueOf(nRest_time);
+        tv_resttime.setText(nRest_time + "");
+        String time = String.valueOf(nRest_time);
         Log.e("nrestTime", time);
         myBroadcastReceiver = new MyBroadCastReceiver();
         IntentFilter intentFilter = new IntentFilter();
@@ -83,26 +88,31 @@ public class Compete_Mode_Activity extends Activity {
         intentFilter.addAction("CompeteACK");
         registerReceiver(myBroadcastReceiver, intentFilter);
 
-        DetectThread detectThread = new DetectThread();
+        DetectTargetThread detectThread = new DetectTargetThread();
         detectThread.start();
 
-        timeHandler = new Handler()
-        {
-            public void handleMessage(Message msg)
-            {
-                int ntime = (Integer)msg.obj;
-                tv_resttime.setText(""+ntime);
+        timeHandler = new Handler() {
+            public void handleMessage(Message msg) {
+                int ntime = (Integer) msg.obj;
+                tv_resttime.setText("" + ntime);
             }
         };
 
+        showHandler = new Handler()
+        {
+            public void handleMessage(Message msg) {
+                tv_start.setBackground(dwPress);
+                tv_start.setTextColor(Black);
+                tv_resttime.setText(""+nRest_time);
+                tv_hitnum.setText("" + 0);
+            }
+        };
         tv_start.setOnTouchListener(new TouchListener());
         tv_return.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN)
-                {
-                    if(!isOver && isRunning)
-                    {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    if (!isOver && isRunning) {
                         CommonData.dataProcess.sendCmd(0x00, CommonData.COMPETECMD, CommonData.STOPSTT, 0x00, 0x00);
                     }
                     isActive = false;
@@ -114,19 +124,17 @@ public class Compete_Mode_Activity extends Activity {
         });
     }
 
-    class TouchListener implements View.OnTouchListener
-    {
-        public boolean onTouch(View v, MotionEvent event)
-        {
-            if(!isRunning) {
+    class TouchListener implements View.OnTouchListener {
+        public boolean onTouch(View v, MotionEvent event) {
+            if (!isRunning) {
                 tv_start.setBackground(dwPress);
                 tv_start.setTextColor(Gray);
                 totalHitNum = 0;
-                tv_hitnum.setText(totalHitNum+"");
-                tv_resttime.setText(nRest_time+"");
+                tv_hitnum.setText(totalHitNum + "");
+                tv_resttime.setText(nRest_time + "");
                 isRunning = true;
                 isOver = false;
-                TimeThread timeThread= new TimeThread();
+                TimeThread timeThread = new TimeThread();
                 timeThread.start();
                 RunThread runThread = new RunThread();
                 runThread.start();
@@ -134,28 +142,26 @@ public class Compete_Mode_Activity extends Activity {
             return false;
         }
     }
+
     class RunThread extends Thread//to produce random number to control target stand
     {
-        public void run()
-        {
-            try
-            {
+        public void run() {
+            try {
                 Thread.sleep(1000);
-            }catch(Exception e)
-            {
+            } catch (Exception e) {
             }
 
-            while(!isOver && isActive)
-            {
+            while (!isOver && isActive) {
                 int nSize = list.size();
 
-                if(nSize != 0) {
+                if (nSize != 0) {
                     switch (nDifficult) {
                         case 1:
                         case 2:
                             int nRandom = (int) (Math.random() * nSize);
                             int ntarget = (Integer) list.get(nRandom);
-                            int t = nFrenquency + (int) (Math.random() * 11 - 5);
+                            int t = nFrenquency + (int) (Math.random() * 11 - 5) * 1000;
+                            Log.e("ntarget", ntarget+"" + t);
                             CommonData.dataProcess.sendCmd(ntarget, CommonData.COMPETECMD, CommonData.STARTSTT, t, 0x00);
                             break;
                         case 3:
@@ -163,102 +169,93 @@ public class Compete_Mode_Activity extends Activity {
                             int nRandom2 = (int) (Math.random() * nSize);
                             int ntarget1 = (Integer) list.get(nRandom1);
                             int ntarget2 = (Integer) list.get(nRandom2);
-                            int t1 = nFrenquency + (int) (Math.random() * 11 - 5);
-                            int t2 = nFrenquency + (int) (Math.random() * 11 - 5);
+                            int t1 = nFrenquency + (int) (Math.random() * 11 - 5)*1000;
+                            int t2 = nFrenquency + (int) (Math.random() * 11 - 5)*1000;
                             CommonData.dataProcess.sendCmd(ntarget1, CommonData.COMPETECMD, CommonData.STARTSTT, t1, 0x00);
                             CommonData.dataProcess.sendCmd(ntarget2, CommonData.COMPETECMD, CommonData.STARTSTT, t2, 0x00);
                             break;
                     }
                 }
-                try
-                {
+
+                try {
                     Thread.sleep(nFrenquency);
-                }catch(Exception e)
-                {
+                } catch (Exception e) {
                 }
             }
         }
     }
-    class TimeThread extends Thread
-    {
+
+    class TimeThread extends Thread {
         public void run() {
-            while(nRest_time > 0 && isActive)
-            {
+            while (nRest_time > 0 && isActive) {
                 try {
                     Thread.sleep(1000);
-                } catch (Exception e)
-                {
+                } catch (Exception e) {
                 }
-                nRest_time --;
-                if(nRest_time == 2)//let RunThread stop in advance
+                nRest_time--;
+                if (nRest_time == 2)//let RunThread stop in advance
                 {
                     isOver = true;
                     CommonData.dataProcess.sendCmd(0x00, CommonData.COMPETECMD, CommonData.STOPSTT, 0x00, 0x00);
                 }
-                Message message=Message.obtain();
-                message.obj=nRest_time;
+                Message message = Message.obtain();
+                message.obj = nRest_time;
                 timeHandler.sendMessage(message);
             }
-            if(nRest_time == 0) {
+            if (nRest_time == 0) {
                 isRunning = false;
-                tv_start.setBackground(dwPress);
-                tv_start.setTextColor(Black);
+                isOver = false;
+                Message msg = Message.obtain();
+                showHandler.sendMessage(msg);
+                nRest_time = PreferenceUtils.getPrefInt(Compete_Mode_Activity.this, PreferenceConstants.GameTime, 0);
             }
         }
     }
-    class DetectTargetThread extends Thread{//to know what targets are used
-        public void run()
-        {
-            while(isActive)
-            {
+
+    class DetectTargetThread extends Thread {//to know what targets are used
+
+        public void run() {
+            while (isActive) {
                 CommonData.dataProcess.sendCmd(0x00, CommonData.COMPETECMD, CommonData.ACKSTT, 0x00, 0x00);
-                try
-                {
+                try {
                     Thread.sleep(CommonData.DetectTime);
-                }catch(Exception e)
-                {
+                } catch (Exception e) {
                 }
             }
         }
     }
-    class MyBroadCastReceiver extends BroadcastReceiver
-    {
-        public void onReceive(Context context, Intent intent)
-        {
+
+    class MyBroadCastReceiver extends BroadcastReceiver {
+        public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if(action.equals("CompeteACK"))
-            {
+            if (action.equals("CompeteACK")) {
                 int iTarget = intent.getIntExtra("TargetExist", 0);
-                if(iTarget != 0)
-                {
-                    if(!list.contains(iTarget)) {
+                if (iTarget != 0) {
+                    if (!list.contains(iTarget)) {
                         list.add(iTarget);
                     }
                 }
             }
-            if(action.equals("ReceiveData"))
-            {
+            if (action.equals("ReceiveData")) {
                 int hitNum = intent.getIntExtra("HitNum", 0);
-                int mode = intent.getIntExtra("Mode", 0);
-                if(hitNum != 0 && isRunning && mode == CommonData.COMPETECMD)
-                {
+                if (hitNum != 0 && isRunning ) {
                     totalHitNum++;
-                    tv_hitnum.setText(""+totalHitNum);
+                    tv_hitnum.setText("" + totalHitNum);
                 }
 
             }
         }
     }
-    public void onBackPressed()
-    {
-        if(!isOver && isRunning)
-        {
+
+    public void onBackPressed() {
+        if (!isOver && isRunning) {
             CommonData.dataProcess.sendCmd(0x00, CommonData.COMPETECMD, CommonData.STOPSTT, 0x00, 0x00);
         }
         isActive = false;
         startActivity(new Intent(Compete_Mode_Activity.this, Compete_Activity.class));
         Compete_Mode_Activity.this.finish();
     }
+
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(myBroadcastReceiver);

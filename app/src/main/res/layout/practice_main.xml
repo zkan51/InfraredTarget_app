@@ -26,25 +26,31 @@
         android:textColor="@color/black"
         android:textSize="30sp"
         android:layout_marginTop="104dp"
+        android:layout_marginBottom="30dp"
         android:layout_below="@+id/tv_exercise_return"
         android:layout_alignEnd="@+id/tv_exercise_return" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="模式简介"
+        android:text="@string/exerciseBrief"
         android:paddingTop="10dp"
         android:id="@+id/textView6"
-        android:layout_marginStart="118dp"
-        android:background="@drawable/bgdexercise"
-        android:layout_below="@+id/tv_exercise_return"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="40dp"
-        android:textColor="#ffffff"
-        android:textSize="30sp"
 
-        android:gravity="center_horizontal"
-        android:textIsSelectable="false" />
+        android:lineSpacingExtra="9dp"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+
+        android:gravity="center_horizontal|left"
+        android:textIsSelectable="false"
+
+        android:layout_marginLeft="50dp"
+        android:layout_toStartOf="@+id/tv_practice_start"
+        android:layout_marginRight="150dp"
+        android:background="@drawable/bgdexercise"
+        android:padding="20dp"
+        android:layout_alignBottom="@+id/tv_practiceend"
+        android:layout_alignTop="@+id/tv_practice_start" />
 
     <TextView
         android:id="@+id/tv_practiceend"
@@ -55,7 +61,8 @@
         android:text="@string/end"
         android:textColor="@color/black"
         android:textSize="30sp"
-        android:layout_alignBottom="@+id/textView6"
-        android:layout_alignEnd="@+id/tv_practice_start" />
+
+        android:layout_alignEnd="@+id/tv_practice_start"
+        android:layout_below="@id/tv_practice_start"/>
 
 </RelativeLayout>

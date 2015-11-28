@@ -166,8 +166,7 @@ public class HitModeActivity extends Activity {
             if(action.equals("ReceiveData"))
             {
                 int hitNum = intent.getIntExtra("HitNum", 0);
-                int mode = intent.getIntExtra("Mode", 0);
-                if(mode == CommonData.HITCMD && hitNum != 0 && hitNum < CommonData.TARGETNUM)
+                if( hitNum != 0 && hitNum < CommonData.TARGETNUM)
                 {
                     arrhitscorenum[hitNum - 1]++;
                     arrhitscores[hitNum - 1] = ""+arrhitscorenum[hitNum - 1];
