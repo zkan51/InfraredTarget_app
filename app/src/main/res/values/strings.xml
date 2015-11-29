@@ -58,7 +58,7 @@
     </string>
     <string name="exerciseBrief">
         <p>模式简介\n\n</p>
-        <p>\t\t起倒靶每隔30秒起倒一次。30秒之内被击中会倒下并再次立起，自动起倒时间刷新。\n</p>
+        <p>\t\t起倒靶被击中会倒下并再次立起。\n</p>
     </string>
     <string name="title_activity_exercise_">Exercise_Activity</string>
     <string name="title_activity_compete__mode_">Compete_Mode_Activity</string>
