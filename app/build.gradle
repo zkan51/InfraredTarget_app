@@ -3,13 +3,11 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 18
     buildToolsVersion "21.1.1"
-
     defaultConfig {
-        applicationId "com.infraredgun"
+        applicationId "com.infraredgun1"
         minSdkVersion 17
         targetSdkVersion 18
     }
-
     buildTypes {
         release {
             minifyEnabled false

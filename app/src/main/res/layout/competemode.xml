@@ -57,7 +57,8 @@
         android:id="@+id/tv1"
         android:layout_alignTop="@+id/tvmode1time"
         android:layout_toEndOf="@+id/tvmode1time"
-        android:textSize="@android:dimen/app_icon_size" />
+        android:textSize="@android:dimen/app_icon_size"
+        android:layout_marginBottom="50dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -75,9 +76,9 @@
         android:text="@string/hit"
         android:id="@+id/textView4"
         android:textSize="@android:dimen/app_icon_size"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/tv_compete_start"
         android:layout_alignEnd="@+id/tv1"
-        android:layout_marginBottom="79dp" />
+        android:layout_marginBottom="90dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -112,6 +113,8 @@
         android:layout_alignTop="@+id/textView5"
         android:layout_alignStart="@+id/tv_rest_time"
         android:textColor="#ff2030ff" />
+
+
 
 
 </RelativeLayout>

@@ -61,7 +61,7 @@ containing a value of this type.
         public static final int bgdexercise=0x7f020002;
         public static final int bgdshoot=0x7f020003;
         public static final int disabled=0x7f020004;
-        public static final int ic_launcher=0x7f020005;
+        public static final int gun_use=0x7f020005;
         public static final int main=0x7f020006;
         public static final int main_up=0x7f020007;
         public static final int model=0x7f020008;
@@ -79,7 +79,6 @@ containing a value of this type.
     public static final class id {
         public static final int TextView01=0x7f070026;
         public static final int TextView02=0x7f070025;
-        public static final int action_settings=0x7f070031;
         public static final int hitnum=0x7f070018;
         public static final int hitscore=0x7f07001a;
         public static final int item_touch_helper_previous_elevation=0x7f070000;
@@ -140,15 +139,6 @@ containing a value of this type.
         public static final int shoot_main=0x7f030008;
         public static final int spinner_item=0x7f030009;
     }
-    public static final class menu {
-        public static final int main=0x7f0a0000;
-        public static final int menu_compete__mode_=0x7f0a0001;
-        public static final int menu_compete_set=0x7f0a0002;
-        public static final int menu_exercise_=0x7f0a0003;
-        public static final int menu_hit_=0x7f0a0004;
-        public static final int menu_hit_set_=0x7f0a0005;
-        public static final int menu_main=0x7f0a0006;
-    }
     public static final class string {
         public static final int action_settings=0x7f080000;
         public static final int app_name=0x7f080001;
@@ -207,10 +197,10 @@ containing a value of this type.
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #RecyclerView_android_orientation android:orientation}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecyclerView_layoutManager com.infraredgun:layoutManager}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecyclerView_reverseLayout com.infraredgun:reverseLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecyclerView_spanCount com.infraredgun:spanCount}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecyclerView_stackFromEnd com.infraredgun:stackFromEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #RecyclerView_layoutManager com.infraredgun1:layoutManager}</code></td><td></td></tr>
+           <tr><td><code>{@link #RecyclerView_reverseLayout com.infraredgun1:reverseLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #RecyclerView_spanCount com.infraredgun1:spanCount}</code></td><td></td></tr>
+           <tr><td><code>{@link #RecyclerView_stackFromEnd com.infraredgun1:stackFromEnd}</code></td><td></td></tr>
            </table>
            @see #RecyclerView_android_orientation
            @see #RecyclerView_layoutManager
@@ -229,7 +219,7 @@ containing a value of this type.
         */
         public static final int RecyclerView_android_orientation = 0;
         /**
-          <p>This symbol is the offset where the {@link com.infraredgun.R.attr#layoutManager}
+          <p>This symbol is the offset where the {@link com.infraredgun1.R.attr#layoutManager}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -239,11 +229,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.infraredgun:layoutManager
+          @attr name com.infraredgun1:layoutManager
         */
         public static final int RecyclerView_layoutManager = 1;
         /**
-          <p>This symbol is the offset where the {@link com.infraredgun.R.attr#reverseLayout}
+          <p>This symbol is the offset where the {@link com.infraredgun1.R.attr#reverseLayout}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -253,11 +243,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.infraredgun:reverseLayout
+          @attr name com.infraredgun1:reverseLayout
         */
         public static final int RecyclerView_reverseLayout = 3;
         /**
-          <p>This symbol is the offset where the {@link com.infraredgun.R.attr#spanCount}
+          <p>This symbol is the offset where the {@link com.infraredgun1.R.attr#spanCount}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -267,11 +257,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.infraredgun:spanCount
+          @attr name com.infraredgun1:spanCount
         */
         public static final int RecyclerView_spanCount = 2;
         /**
-          <p>This symbol is the offset where the {@link com.infraredgun.R.attr#stackFromEnd}
+          <p>This symbol is the offset where the {@link com.infraredgun1.R.attr#stackFromEnd}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -281,7 +271,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.infraredgun:stackFromEnd
+          @attr name com.infraredgun1:stackFromEnd
         */
         public static final int RecyclerView_stackFromEnd = 4;
     };
