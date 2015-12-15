@@ -30,6 +30,7 @@ import java.util.TimerTask;
 
 
 public class Compete_Mode_Activity extends Activity {
+    final int targetnum = 4;
     private TextView tv_resttime;
     private TextView tv_hitnum;
     private TextView tv_return;
@@ -54,7 +55,7 @@ public class Compete_Mode_Activity extends Activity {
 
     boolean isHit = false;
 
-    int state[] = new int[3];
+    int state[] = new int[targetnum];
 
     static int NOHIT = 1;
     static int SEND = 2;
@@ -87,9 +88,10 @@ public class Compete_Mode_Activity extends Activity {
         isOver = false;
         isActive = true;
 
-        list.add(1);
-        list.add(2);
-        list.add(3);
+        for(int i = 1; i <= targetnum; i++)
+        {
+            list.add(i);
+        }
 
         if (nRest_time == 0) {
             nRest_time = CommonData.GameTime;
@@ -128,7 +130,7 @@ public class Compete_Mode_Activity extends Activity {
         {
             public void handleMessage(Message msg) {
                 int nObj = (Integer) msg.obj;
-                if(nObj < 3 && state[nObj] != NOHIT)
+                if(nObj < targetnum && state[nObj] != NOHIT)
                 {
                     state[nObj] = NOHIT;
                 }
@@ -175,7 +177,7 @@ public class Compete_Mode_Activity extends Activity {
     class RunThread extends Thread//to produce random number to control target stand
     {
         public void run() {
-            for(int i = 0; i < 3; i++)
+            for(int i = 0; i < targetnum; i++)
             {
                 state[i] = NOHIT;
             }
@@ -216,7 +218,7 @@ public class Compete_Mode_Activity extends Activity {
                 else
                 {
                     int count = 0;
-                    for(int i = 0; i < 3; i++)
+                    for(int i = 0; i < targetnum; i++)
                     {
                         if(state[i] == NOHIT)
                         {
@@ -285,7 +287,7 @@ public class Compete_Mode_Activity extends Activity {
     void randomTask()
     {
         ArrayList arrayList = new ArrayList();//store targets to produce random target
-        for(int i = 0; i< 3; i++)
+        for(int i = 0; i< targetnum; i++)
         {
             if(state[i] == NOHIT) {
                 arrayList.add(i);
