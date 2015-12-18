@@ -121,8 +121,6 @@ public class Compete_Mode_Activity extends Activity {
             public void handleMessage(Message msg) {
                 tv_start.setBackground(dwPress);
                 tv_start.setTextColor(Black);
-                tv_resttime.setText(""+nRest_time);
-                tv_hitnum.setText("" + 0);
             }
         };
 
@@ -233,6 +231,7 @@ public class Compete_Mode_Activity extends Activity {
                             randomTask();
                             break;
                         case 3:
+                        case 4:
                             randomTask();
                             try
                             {
@@ -293,7 +292,7 @@ public class Compete_Mode_Activity extends Activity {
                 arrayList.add(i);
             }
         }
-        int r =(int) Math.random() * arrayList.size();
+        int r =(int) (Math.random() * arrayList.size());
         final int t = (Integer)arrayList.get(r);
         state[t] = SEND;
         CommonData.dataProcess.sendCmd( t + 1,CommonData.COMPETECMD, CommonData.STARTSTT, nFrenquency/1000, 0x00);

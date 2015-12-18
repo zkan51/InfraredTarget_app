@@ -62,9 +62,9 @@ public class Exercise_Activity extends Activity {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     if(bStart) {
                         CommonData.dataProcess.sendCmd(0x00, CommonData.EXERCISECMD, CommonData.STOPSTT, 0x00, 0x00);
+                        tv_start.setTextColor(Black);
+                        tv_start.setBackground(dwPress);
                     }
-                    startActivity(new Intent(Exercise_Activity.this, MainActivity.class));
-                    Exercise_Activity.this.finish();
                 }
                 return false;
             }
