@@ -152,7 +152,7 @@ public class DataProcess {
         frame[7] =(byte)sum;
         frame[8] =(byte)CommonData.STOPBYTE;
         Log.e("senddata", "senddata");
-        if(!socket.isConnected())
+        if(socket == null ||!socket.isConnected())
         {
             return 0;
         }
