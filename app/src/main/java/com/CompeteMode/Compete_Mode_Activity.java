@@ -30,7 +30,7 @@ import java.util.TimerTask;
 
 
 public class Compete_Mode_Activity extends Activity {
-    final int targetnum = 4;
+    final int targetnum = 5;
     private TextView tv_resttime;
     private TextView tv_hitnum;
     private TextView tv_return;
@@ -232,6 +232,7 @@ public class Compete_Mode_Activity extends Activity {
                             break;
                         case 3:
                         case 4:
+                        case 5:
                             randomTask();
                             try
                             {
