@@ -226,12 +226,12 @@ public class Compete_Mode_Activity extends Activity {
                     switch(count)
                     {
                         case 1:
-                            break;
                         case 2:
+                        case 3:
+                            break;
+                        case 4:
                             randomTask();
                             break;
-                        case 3:
-                        case 4:
                         case 5:
                             randomTask();
                             try

@@ -39,8 +39,8 @@ public class Exercise_Activity extends Activity {
 
         tv_start.setTextColor(Black);
         tv_start.setBackground(dwPress);
-        tv_end.setTextColor(Black);
-        tv_start.setBackground(dwPress);
+        tv_end.setTextColor(Gray);
+        tv_end.setBackground(dwDisable);
 
         tv_exerciseReturn.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -64,6 +64,9 @@ public class Exercise_Activity extends Activity {
                         CommonData.dataProcess.sendCmd(0x00, CommonData.EXERCISECMD, CommonData.STOPSTT, 0x00, 0x00);
                         tv_start.setTextColor(Black);
                         tv_start.setBackground(dwPress);
+                        tv_end.setTextColor(Gray);
+                        tv_end.setBackground(dwDisable);
+                        bStart = false;
                     }
                 }
                 return false;
@@ -78,6 +81,8 @@ public class Exercise_Activity extends Activity {
                       bStart = true;
                       tv_start.setTextColor(Gray);
                       tv_start.setBackground(dwDisable);
+                      tv_end.setTextColor(Black);
+                      tv_end.setBackground(dwPress);
                       CommonData.dataProcess.sendCmd(0x00, CommonData.EXERCISECMD, CommonData.STARTSTT, CommonData.EXERCISE_TIME, 0x00);
                   }
                 }
