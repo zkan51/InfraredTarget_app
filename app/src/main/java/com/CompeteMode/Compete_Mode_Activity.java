@@ -128,9 +128,10 @@ public class Compete_Mode_Activity extends Activity {
         {
             public void handleMessage(Message msg) {
                 int nObj = (Integer) msg.obj;
-                if(nObj < targetnum && state[nObj] != NOHIT)
-                {
-                    state[nObj] = NOHIT;
+                synchronized (state) {
+                    if (nObj < targetnum && state[nObj] != NOHIT) {
+                        state[nObj] = NOHIT;
+                    }
                 }
             }
         };
@@ -175,9 +176,10 @@ public class Compete_Mode_Activity extends Activity {
     class RunThread extends Thread//to produce random number to control target stand
     {
         public void run() {
-            for(int i = 0; i < targetnum; i++)
-            {
-                state[i] = NOHIT;
+            synchronized (state) {
+                for (int i = 0; i < targetnum; i++) {
+                    state[i] = NOHIT;
+                }
             }
             switch (nDifficult) {
                 case 1:
@@ -216,11 +218,11 @@ public class Compete_Mode_Activity extends Activity {
                 else
                 {
                     int count = 0;
-                    for(int i = 0; i < targetnum; i++)
-                    {
-                        if(state[i] == NOHIT)
-                        {
-                            count ++;
+                    synchronized (state) {
+                        for (int i = 0; i < targetnum; i++) {
+                            if (state[i] == NOHIT) {
+                                count++;
+                            }
                         }
                     }
                     switch(count)
@@ -287,15 +289,18 @@ public class Compete_Mode_Activity extends Activity {
     void randomTask()
     {
         ArrayList arrayList = new ArrayList();//store targets to produce random target
-        for(int i = 0; i< targetnum; i++)
-        {
-            if(state[i] == NOHIT) {
-                arrayList.add(i);
-            }
-        }
+        synchronized (state) {
+            for (int i = 0; i < targetnum; i++) {
+                    if (state[i] == NOHIT) {
+                        arrayList.add(i);
+                    }
+                }
+         }
         int r =(int) (Math.random() * arrayList.size());
         final int t = (Integer)arrayList.get(r);
-        state[t] = SEND;
+        synchronized (state) {
+            state[t] = SEND;
+        }
         CommonData.dataProcess.sendCmd( t + 1,CommonData.COMPETECMD, CommonData.STARTSTT, nFrenquency/1000, 0x00);
         TimerTask task = new TimerTask() {
             public void run() {
@@ -322,7 +327,9 @@ public class Compete_Mode_Activity extends Activity {
                 if (hitNum != 0 && isRunning ) {
                     totalHitNum++;
                     isHit = true;
-                    state[hitNum - 1] = NOHIT;
+                    synchronized (state) {
+                        state[hitNum - 1] = NOHIT;
+                    }
                     tv_hitnum.setText("" + totalHitNum);
                 }
             }
